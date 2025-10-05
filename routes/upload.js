@@ -3,7 +3,7 @@ const multer = require('multer');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const { dbRun } = require('../database/database');
-const { requireAuth } = require('../middleware/auth'); // JWT middleware
+const { requireAuth } = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -11,13 +11,13 @@ const router = express.Router();
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     let uploadPath = 'uploads/';
-
+    
     if (file.fieldname === 'avatar') {
       uploadPath += 'avatars/';
     } else if (file.fieldname === 'banner') {
       uploadPath += 'banners/';
     }
-
+    
     cb(null, uploadPath);
   },
   filename: (req, file, cb) => {
@@ -38,7 +38,7 @@ const upload = multer({
   storage: storage,
   fileFilter: fileFilter,
   limits: {
-    fileSize: 5 * 1024 * 1024 // 5MB limit
+    fileSize: parseInt(process.env.MAX_FILE_SIZE) || 5 * 1024 * 1024 // 5MB default
   }
 });
 
@@ -48,19 +48,19 @@ router.post('/avatar', requireAuth, upload.single('avatar'), async (req, res) =>
     if (!req.file) {
       return res.status(400).json({ error: 'No file uploaded' });
     }
-
+    
     const avatarUrl = `/uploads/avatars/${req.file.filename}`;
-
-    // Update user's avatar in database (folosim JWT)
+    
+    // Update user's avatar in database
     await dbRun(
       'UPDATE users SET avatar_url = ?, updated_at = ? WHERE id = ?',
-      [avatarUrl, new Date().toISOString(), req.userId]
+      [avatarUrl, new Date().toISOString(), req.session.userId]
     );
-
-    res.json({
-      success: true,
+    
+    res.json({ 
+      success: true, 
       message: 'Avatar uploaded successfully',
-      imageUrl: avatarUrl
+      imageUrl: avatarUrl 
     });
   } catch (error) {
     console.error('Error uploading avatar:', error);
@@ -74,19 +74,19 @@ router.post('/banner', requireAuth, upload.single('banner'), async (req, res) =>
     if (!req.file) {
       return res.status(400).json({ error: 'No file uploaded' });
     }
-
+    
     const bannerUrl = `/uploads/banners/${req.file.filename}`;
-
-    // Update user's banner in database (folosim JWT)
+    
+    // Update user's banner in database
     await dbRun(
       'UPDATE users SET banner_url = ?, updated_at = ? WHERE id = ?',
-      [bannerUrl, new Date().toISOString(), req.userId]
+      [bannerUrl, new Date().toISOString(), req.session.userId]
     );
-
-    res.json({
-      success: true,
+    
+    res.json({ 
+      success: true, 
       message: 'Banner uploaded successfully',
-      imageUrl: bannerUrl
+      imageUrl: bannerUrl 
     });
   } catch (error) {
     console.error('Error uploading banner:', error);
