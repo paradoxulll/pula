@@ -694,7 +694,7 @@
     display: block;
 }
 
-        .rules-editor {
+.rules-editor {
     min-height: 150px;
     padding: 1rem;
     border: 1px solid var(--glass-border);
@@ -986,10 +986,17 @@
             </section>
         </div>
 
-       <!-- Rules Page -->
+<!-- Rules Page -->
 <div class="page-content" id="rules-page">
     <section class="rules">
         <h2 class="section-title">Server Rules</h2>
+
+        <!-- Dropdown pentru selectarea regulamentului -->
+        <select id="rules-select" class="liquid-glass" style="padding:0.5rem; margin-bottom:1rem;">
+            <option value="fivem-rules">Fivem Rules</option>
+            <option value="discord-rules">Discord Rules</option>
+            <option value="staff-rules">Staff Rules</option>
+        </select>
 
         <!-- Toolbar -->
         <div class="editor-toolbar liquid-glass" style="padding:10px; margin-bottom:1rem; display:flex; gap:0.5rem;">
@@ -999,30 +1006,11 @@
             <button onclick="formatText('hiliteColor','yellow')" title="Highlight"><i class="fas fa-highlighter"></i></button>
         </div>
 
-        <div class="rules-grid">
-            <!-- General Rules -->
-            <div class="rules-category animate-on-scroll liquid-glass">
-                <h3><i class="fas fa-globe"></i> General Rules</h3>
-                <div class="rules-editor" id="general-rules"></div>
-            </div>
-
-            <!-- Roleplay Rules -->
-            <div class="rules-category animate-on-scroll liquid-glass">
-                <h3><i class="fas fa-theater-masks"></i> Roleplay Rules</h3>
-                <div class="rules-editor" id="roleplay-rules"></div>
-            </div>
-
-            <!-- Gameplay Rules -->
-            <div class="rules-category animate-on-scroll liquid-glass">
-                <h3><i class="fas fa-gamepad"></i> Gameplay Rules</h3>
-                <div class="rules-editor" id="gameplay-rules"></div>
-            </div>
-
-            <!-- Voice Chat Rules -->
-            <div class="rules-category animate-on-scroll liquid-glass">
-                <h3><i class="fas fa-microphone"></i> Voice Chat</h3>
-                <div class="rules-editor" id="voice-rules"></div>
-            </div>
+        <!-- Regulamente -->
+        <div class="rules-editor-container">
+            <div class="rules-editor liquid-glass" id="fivem-rules" spellcheck="false"></div>
+            <div class="rules-editor liquid-glass" id="discord-rules" spellcheck="false" style="display:none;"></div>
+            <div class="rules-editor liquid-glass" id="staff-rules" spellcheck="false" style="display:none;"></div>
         </div>
 
         <button class="edit-rules-btn" onclick="toggleEditRules()">
@@ -1255,36 +1243,41 @@
 
         // Rules editing function
         // Tab functionality
-function toggleEditRules() {
-    const editors = document.querySelectorAll('.rules-editor');
-    const editBtn = document.querySelector('.edit-rules-btn');
+const editors = document.querySelectorAll('.rules-editor');
+const select = document.getElementById('rules-select');
 
-    editors.forEach(editor => {
-        if (editor.contentEditable === 'true') {
-            // Save to localStorage
-            localStorage.setItem(editor.id, editor.innerHTML);
-            editor.contentEditable = 'false';
-            editBtn.innerHTML = '<i class="fas fa-edit"></i> Edit Rules';
-            editBtn.style.backgroundColor = 'var(--gradient-blue)';
-        } else {
-            editor.contentEditable = 'true';
-            editor.focus();
-            editBtn.innerHTML = '<i class="fas fa-save"></i> Save Rules';
-            editBtn.style.backgroundColor = '#4caf50';
-        }
-    });
-}
-
-// Load saved rules
-document.addEventListener('DOMContentLoaded', () => {
-    const editors = document.querySelectorAll('.rules-editor');
-    editors.forEach(editor => {
-        const saved = localStorage.getItem(editor.id);
-        if (saved) editor.innerHTML = saved;
-    });
+// Încarcă textul salvat din localStorage
+editors.forEach(editor => {
+    const saved = localStorage.getItem(editor.id);
+    if (saved) editor.innerHTML = saved;
 });
 
-// Toolbar functions
+// Schimbă regulamentul vizibil
+select.addEventListener('change', () => {
+    editors.forEach(editor => editor.style.display = 'none');
+    document.getElementById(select.value).style.display = 'block';
+});
+
+// Toggle edit și salvare
+function toggleEditRules() {
+    const currentEditor = document.getElementById(select.value);
+    const editBtn = document.querySelector('.edit-rules-btn');
+
+    if (currentEditor.contentEditable === 'true') {
+        // Salvare
+        localStorage.setItem(currentEditor.id, currentEditor.innerHTML);
+        currentEditor.contentEditable = 'false';
+        editBtn.innerHTML = '<i class="fas fa-edit"></i> Edit Rules';
+        editBtn.style.backgroundColor = 'var(--gradient-blue)';
+    } else {
+        currentEditor.contentEditable = 'true';
+        currentEditor.focus();
+        editBtn.innerHTML = '<i class="fas fa-save"></i> Save Rules';
+        editBtn.style.backgroundColor = '#4caf50';
+    }
+}
+
+// Toolbar funcții
 function formatText(command, value = null) {
     document.execCommand(command, false, value);
 }
@@ -1292,6 +1285,7 @@ function formatText(command, value = null) {
     </script>
 </body>
 </html>
+
 
 
 
