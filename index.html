@@ -741,53 +741,22 @@
             border-radius: 2px;
         }
 
-        .rules-list {
-            display: grid;
-            gap: 1.5rem;
+        .rules-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-light);
         }
 
-        .rule-item {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 1.5rem;
-            border-left: 4px solid var(--swit-blue);
+        .rules-text p {
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid transparent;
             transition: all 0.3s ease;
         }
 
-        .rule-item:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateX(5px);
-        }
-
-        .rule-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 30px;
-            background: var(--gradient-blue);
-            color: white;
-            border-radius: 50%;
-            font-weight: 700;
-            margin-right: 1rem;
-        }
-
-        .rule-text {
-            display: inline;
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-
-        .rule-penalty {
-            display: block;
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            font-style: italic;
-        }
-
-        .rule-penalty::before {
-            content: '⚠️ ';
+        .rules-text p:hover {
+            border-left: 3px solid var(--swit-blue);
+            padding-left: 1.5rem;
         }
 
         @keyframes fadeIn {
@@ -952,58 +921,57 @@
                 </div>
                 <h1 class="forum-title">Swit Community</h1>
                 <p class="forum-subtitle">
-                    Joaca FiveM-ul asa cum trebuie doar pe Swit Roleplay ! 
-                    Comunitate unica care chiar isi asculta jucatori.
-                    From Players for Players 💙
+                    Experience the ultimate FiveM roleplay server with custom scripts, 
+                    immersive gameplay, and a thriving community of dedicated players.
                 </p>
                 <div class="cta-buttons">
                     <a href="https://discord.gg/swtirp" class="btn btn-primary" target="_blank">
-                        <i class="fab fa-discord"></i> Intra pe Discord
+                        <i class="fab fa-discord"></i> Join Our Discord
                     </a>
                     <a href="#" class="btn btn-secondary" data-page="rules">
-                        <i class="fas fa-book"></i> Regulamente
+                        <i class="fas fa-book"></i> Server Rules
                     </a>
                 </div>
             </section>
 
             <!-- Features Section -->
             <section class="features">
-                <h2 class="section-title animate-on-scroll">De ce Swit?</h2>
+                <h2 class="section-title animate-on-scroll">Why Choose Swit?</h2>
                 <div class="features-grid">
                     <div class="feature-card animate-on-scroll liquid-glass">
                         <div class="feature-icon">
                             <i class="fas fa-shield-alt"></i>
                         </div>
-                        <h3>Staff Experimentat</h3>
-                        <p>Staff-ul Swit este bine experimentat si cu un knowledge despre FiveM imens..</p>
+                        <h3>Professional Staff</h3>
+                        <p>Our dedicated team ensures fair play and provides 24/7 support to all community members.</p>
                     </div>
                     <div class="feature-card animate-on-scroll liquid-glass">
                         <div class="feature-icon">
                             <i class="fas fa-code"></i>
                         </div>
-                        <h3>Scripturi Optimizate</h3>
-                        <p>Gameplay-ul bun este atunci cand scripturile sunt optimizate si toate merg !</p>
+                        <h3>Custom Scripts</h3>
+                        <p>Unique gameplay features and custom scripts developed exclusively for our community.</p>
                     </div>
                     <div class="feature-card animate-on-scroll liquid-glass">
                         <div class="feature-icon">
                             <i class="fas fa-users"></i>
                         </div>
-                        <h3>Comunitate Activa</h3>
-                        <p>Alatura-te noua si celor 30 de membrii.</p>
+                        <h3>Active Community</h3>
+                        <p>Join hundreds of active players in our immersive roleplay experiences.</p>
                     </div>
                     <div class="feature-card animate-on-scroll liquid-glass">
                         <div class="feature-icon">
                             <i class="fas fa-rocket"></i>
                         </div>
-                        <h3>Update-uri regulate</h3>
-                        <p>Modificari constante pentru a aduce mereu ceva nou si mult mai multe sisteme pentru a simula viata reala cat de bine putem</p>
+                        <h3>Regular Updates</h3>
+                        <p>Constant improvements and new content to keep the gameplay fresh and exciting.</p>
                     </div>
                 </div>
             </section>
 
             <!-- Staff Section Preview -->
             <section class="staff">
-                <h2 class="section-title animate-on-scroll">Echipa Staff</h2>
+                <h2 class="section-title animate-on-scroll">Meet Our Team</h2>
                 <div class="staff-grid">
                     <!-- Owner 1 -->
                     <div class="staff-card animate-on-scroll liquid-glass" data-role="owner">
@@ -1017,7 +985,7 @@
                             </div>
                         </div>
                         <div class="staff-info">
-                            <p>Este cel care a facut din Numele "Swit" o comunitate reala unde toti sunt bine veniti</p>
+                            <p>Leading the community with vision and dedication since 2020. Responsible for overall server management and strategic direction.</p>
                         </div>
                     </div>
 
@@ -1033,38 +1001,37 @@
                             </div>
                         </div>
                         <div class="staff-info">
-                            <p>El este cel care lucreaza zi si noapte la server si monitorizeaza serverul pentu o performanta optima.</p>
+                            <p>Co-owner focused on community development and technical infrastructure. Ensures smooth server operations and player experience.</p>
                         </div>
                     </div>
                 </div>
                 <div style="text-align: center; margin-top: 3rem;">
                     <a href="#" class="btn btn-secondary" data-page="staff">
-                        Toata Echipa Staff
+                        View Full Team
                     </a>
                 </div>
             </section>
 
             <!-- Story Section -->
             <section class="story">
-                <h2 class="section-title animate-on-scroll">Despre Swit</h2>
+                <h2 class="section-title animate-on-scroll">Our Story</h2>
                 <div class="story-content liquid-glass animate-on-scroll">
                     <div class="story-text">
                         <p>
-                            Bine ai venit pe <span class="highlight">Swit Community</span>, un server nascut din pasiune 
-                            unde distractia si GTA 5 se intalnesc si au format comunitatea Swit. 
-                            Toata povestea incepe din Septembrie anul 2025 cand Paradox impreuna cu obsedat au decis
-                            sa puna bazele unui server de FiveM bine pus la punct si serios , nu cum sunt 70% din
-                            serverele romanesti
+                            Welcome to <span class="highlight">Swit Community</span>, a server born from a passion for 
+                            immersive roleplay and a vision to create something truly special in the FiveM universe. 
+                            Our journey began in 2020 when a small group of dedicated players noticed a gap in the 
+                            market for a server that balanced serious roleplay with accessibility for newcomers.
                         </p>
                         <p>
-                            Comunitatea este la inceput dar incercam mereu sa aducem lucruri noi si inovative
-                            pentru a stimula playerii sa creeze o <span class="highlight">dependenta</span> pe serverul
-                            nostru de FiveM.
+                            Over the years, we've grown from a modest 10-player server to a thriving community with 
+                            hundreds of active members. Our <span class="highlight">unique economic system</span>, 
+                            custom jobs, and deep character development mechanics set us apart from other roleplay servers.
                         </p>
                         <p>
-                            Ce ne face speciali ? <span class="highlight">Calitatea peste Cantitate</span> acesta este
-                            singurul raspuns corect care vi-l putem da. Mai sunt si alte aspecte dar acesta este cel
-                            mai bun motiv pentru care ne diferentieaza de alte servere romanesti
+                            What makes our community special is our commitment to <span class="highlight">quality over quantity</span>. 
+                            We carefully vet our members to ensure everyone is dedicated to creating compelling stories 
+                            and respecting the roleplay experience.
                         </p>
                     </div>
                 </div>
@@ -1078,171 +1045,62 @@
                 <div class="rules-container">
                     <div class="rules-tabs">
                         <div class="rule-tab active" data-category="fivem">
-                            <i class="fas fa-gamepad"></i> Regulament FiveM
+                            <i class="fas fa-gamepad"></i> FiveM Rules
                         </div>
                         <div class="rule-tab" data-category="discord">
-                            <i class="fab fa-discord"></i> Regulament Discord
+                            <i class="fab fa-discord"></i> Discord Rules
                         </div>
                         <div class="rule-tab" data-category="staff">
-                            <i class="fas fa-users-cog"></i> Regulament Staff
+                            <i class="fas fa-users-cog"></i> Staff Rules
                         </div>
                     </div>
                     
                     <div class="rules-content liquid-glass">
                         <!-- FiveM Rules -->
                         <div class="rule-category active" id="fivem-rules">
-                            <h3>Regulament FiveM</h3>
-                            <div class="rules-list">
-                                <div class="rule-item">
-                                    <span class="rule-number">1</span>
-                                    <span class="rule-text">* Metagaming - Reprezinta folosirea informatiilor OOC in scopuri IC
-* Powergaming - Reprezinta roleplay-ul supranatural sau imposibil in viata reala
-* No Fear - Reprezinta viata jucatorului in pericol unde el trebuie sa aibe frica
-* Random Deathmatch (RDM) - Reprezinta omorarea unui player fara un motiv roleplay
-* Vehicle Deathmatch (VDM) - Reprezinta omorarea unui player cu o masina fara un motiv roleplay
-* Cop Fear - Inseamna nerolarea fricii fata de politie
-* Cop Bait - Reprezinta instigarea politiei la un roleplay nedorit
-* Olympic Swim - Reprezinta sa inoti incontinuu fara pauza , pe server este permis sa inoti timp de 2 minute fara oprire dar cu 1 minut pauza
-* Chicken Run - Reprezinta alergarea in zig-zag pentru a nu fi lovit de gloante , pe server este permis sa alergi maxim o data in zig-zag
-* Ninja Jack - Reprezinta sa furi un vehicul fara a rola pe /me
-* Revenge Kill - Inseamna ca atunci cand ai murit IC te intorci sa te razbuni pe cine te-a omorat
-* Mixing - Reprezinta folosirea informatiilor IC in OOC
-* Character Kill - Reprezinta resetarea caracterului , incepi o viata noua
-* Player Kill - Inseamna ca ai uitat toate informatiile din acel roleplay dupa ce ai murit in el
-* Drop & Kill - Reprezinta obligarea unui player sa arunce toate itemele din inventar , ulterior omorandu-l
-* Rob & Kill - Reprezinta jefuirea unei persoane iar dupa uciderea ei
-* Kill & Rob - Reprezinta uciderea unei persoane iar dupa jefuirea ei
-* Troll - Reprezinta actiuni asupra unor playeri care au scopul de deranjare , intrerupere sau stricarea experientei de joc</span>
-                                    <span class="rule-penalty">Sanctiune: Depinde de regula incalcata</span>
-                                </div>
-                                <div class="rule-item">
-                                    <span class="rule-number">2</span>
-                                    <span class="rule-text">Scam - Scamul sau inselaciunea playeriilor nu este permisa mereu , uite cand aceasta regula este permisa:
-
-1.Suma bunurilor din scam nu trece de 20,000$
-2.Vinzi un obiect stricat / deteriorat pe care il prezinti ca fiind unul bun / perfect
-
-Criteriul 2 este permis doar pentru urmatoarele categorii de iteme: Arme Albe , Iteme de Job , Vehicule care nu depasesc 20,000$ in Dealership</span>
-                                    <span class="rule-penalty">Sanctiune: Depinde de gravitate - Ban Temporar 3d</span>
-                                </div>
-                                <div class="rule-item">
-                                    <span class="rule-number">3</span>
-                                    <span class="rule-text">Ban Evade - Reprezinta folosirea unui alt cont pentru a juca pe comunitate , tu fiind banat pe un alt cont</span>
-                                    <span class="rule-penalty">Sanctiune: Ban Permanent</span>
-                                </div>
-                                <div class="rule-item">
-                                    <span class="rule-number">4</span>
-                                    <span class="rule-text">Folosirea de Macro - Aceasta regula reprezinta automatizarea unor sisteme de pe server prin software extern , aceasta regula este permisa numai cand:
-
-1.Esti la PC cand macro-ul ruleaza
-2.Macro-ul folosit nu dauneaza comunitatii.</span>
-                                    <span class="rule-penalty">Sanctiune: Warn - Ban Permanent</span>
-                                </div>
-                                <div class="rule-item">
-                                    <span class="rule-number">5</span>
-                                    <span class="rule-text">Bug Abuse - Reprezinta folosirea bugurilor de pe server pentru a iti creea un avantaj in joc</span>
-                                    <span class="rule-penalty">Sanctiune: Depinde de gravitate - Warn</span>
-                                </div>
-                                <div class="rule-item">
-                                    <span class="rule-number">6</span>
-                                    <span class="rule-text">Comportamentul cu fetele - Aceasta regula arata cum NU trebuie sa va comportati cu fetele
-
-1.Nu aveti voie sa puneti fata respectiva intr o postura jenanta
-2.Nu aveti voie sa puneti fata respectiva intr o postura care se simte deranjata fata de voi
-3.Nu aveti voie sa hartuiti fetele de pe comunitate
-4.Nu aveti voie sa faceti diferente de sex sau sa avantajati un anumit sex ( M sau F )</span>
-                                    <span class="rule-penalty">Sanctiune: Depinde de gravitate - Ban Temporar 2d</span>
-                                </div>
-                                <div class="rule-item">
-                                    <span class="rule-number">7</span>
-                                    <span class="rule-text">Bombardier - Aceasta regula arata cum NU trebuie sa va comportati cu playerii de pe server
-
-1.Nu aveti voie luati persoana respectiva peste picior personal
-2.Nu aveti voie sa faceti mistouri despre o persoana in care o pun intr o postura proasta
-3.Nu aveti voie sa va luati la cearta cu lumea random pentru ca sunteti "smecheri"</span>
-                                    <span class="rule-penalty">Sanctiune: Depinde de gravitate - Ban Temporar 5d</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="rule-item">
-                                    <span class="rule-number">8</span>
-                                    <span class="rule-text">Reclama - Fie ea facuta in privat sau public nu este permisa pe server sub nicio forma"</span>
-                                    <span class="rule-penalty">Sanctiune: Ban Permanent</span>
-                                </div>
+                            <h3>FiveM Server Rules</h3>
+                            <div class="rules-text">
+                                <p>Respect all players and staff members at all times. Harassment, discrimination, or hate speech will not be tolerated.</p>
+                                <p>No cheating, exploiting, or using any unauthorized mods or scripts that provide an unfair advantage.</p>
+                                <p>Roleplay must be realistic and immersive at all times. Stay in character and follow server lore.</p>
+                                <p>No random deathmatch (RDM) or vehicle deathmatch (VDM). All hostile actions must have proper roleplay justification.</p>
+                                <p>Follow all server-specific roleplay guidelines and scenarios. Listen to staff instructions during events.</p>
+                                <p>No advertising other servers or communities in any form, including in-game, Discord, or through direct messages.</p>
+                                <p>Keep voice chat clear of background noise and use it appropriately for roleplay situations.</p>
+                                <p>Do not abuse game mechanics or exploit bugs. Report any issues to staff immediately.</p>
+                                <p>Respect the roleplay of others and do not interrupt or disrupt ongoing scenarios without proper context.</p>
                             </div>
                         </div>
                         
                         <!-- Discord Rules -->
                         <div class="rule-category" id="discord-rules">
                             <h3>Discord Community Rules</h3>
-                            <div class="rules-list">
-                                <div class="rule-item">
-                                    <span class="rule-number">1</span>
-                                    <span class="rule-text">Be respectful to all community members and staff.</span>
-                                    <span class="rule-penalty">Penalty: Warning or temporary mute</span>
-                                </div>
-                                <div class="rule-item">
-                                    <span class="rule-number">2</span>
-                                    <span class="rule-text">No spamming, flooding, or excessive use of @mentions.</span>
-                                    <span class="rule-penalty">Penalty: Temporary mute or channel restrictions</span>
-                                </div>
-                                <div class="rule-item">
-                                    <span class="rule-number">3</span>
-                                    <span class="rule-text">Keep discussions in their appropriate channels.</span>
-                                    <span class="rule-penalty">Penalty: Warning and message deletion</span>
-                                </div>
-                                <div class="rule-item">
-                                    <span class="rule-number">4</span>
-                                    <span class="rule-text">No NSFW, offensive, or inappropriate content.</span>
-                                    <span class="rule-penalty">Penalty: Immediate ban from Discord</span>
-                                </div>
-                                <div class="rule-item">
-                                    <span class="rule-number">5</span>
-                                    <span class="rule-text">Do not share personal information of yourself or others.</span>
-                                    <span class="rule-penalty">Penalty: Permanent ban from Discord</span>
-                                </div>
-                                <div class="rule-item">
-                                    <span class="rule-number">6</span>
-                                    <span class="rule-text">Follow Discord's Terms of Service and Community Guidelines.</span>
-                                    <span class="rule-penalty">Penalty: Account suspension or ban</span>
-                                </div>
+                            <div class="rules-text">
+                                <p>Be respectful to all community members and staff. Treat others as you would like to be treated.</p>
+                                <p>No spamming, flooding, or excessive use of @mentions. Keep conversations constructive and on-topic.</p>
+                                <p>Keep discussions in their appropriate channels. Read channel descriptions before posting.</p>
+                                <p>No NSFW, offensive, or inappropriate content including images, links, or discussions.</p>
+                                <p>Do not share personal information of yourself or others. Protect your privacy and the privacy of fellow members.</p>
+                                <p>Follow Discord's Terms of Service and Community Guidelines at all times.</p>
+                                <p>No advertising or self-promotion without staff approval.</p>
+                                <p>Use English as the primary language in public channels to ensure everyone can participate.</p>
+                                <p>Respect staff decisions and follow their instructions. If you have concerns, address them through proper channels.</p>
                             </div>
                         </div>
                         
                         <!-- Staff Rules -->
                         <div class="rule-category" id="staff-rules">
                             <h3>Staff Team Guidelines</h3>
-                            <div class="rules-list">
-                                <div class="rule-item">
-                                    <span class="rule-number">1</span>
-                                    <span class="rule-text">Always lead by example and maintain professionalism.</span>
-                                    <span class="rule-penalty">Penalty: Warning or demotion</span>
-                                </div>
-                                <div class="rule-item">
-                                    <span class="rule-number">2</span>
-                                    <span class="rule-text">Remain impartial and fair in all decisions and interactions.</span>
-                                    <span class="rule-penalty">Penalty: Suspension from staff duties</span>
-                                </div>
-                                <div class="rule-item">
-                                    <span class="rule-number">3</span>
-                                    <span class="rule-text">Do not abuse administrative powers or privileges.</span>
-                                    <span class="rule-penalty">Penalty: Immediate removal from staff team</span>
-                                </div>
-                                <div class="rule-item">
-                                    <span class="rule-number">4</span>
-                                    <span class="rule-text">Maintain confidentiality regarding staff discussions and decisions.</span>
-                                    <span class="rule-penalty">Penalty: Removal from staff team</span>
-                                </div>
-                                <div class="rule-item">
-                                    <span class="rule-number">5</span>
-                                    <span class="rule-text">Be active and responsive to community needs and reports.</span>
-                                    <span class="rule-penalty">Penalty: Performance review and possible demotion</span>
-                                </div>
-                                <div class="rule-item">
-                                    <span class="rule-number">6</span>
-                                    <span class="rule-text">Follow the established chain of command for issues and appeals.</span>
-                                    <span class="rule-penalty">Penalty: Warning or suspension</span>
-                                </div>
+                            <div class="rules-text">
+                                <p>Always lead by example and maintain professionalism in all interactions with community members.</p>
+                                <p>Remain impartial and fair in all decisions and interactions. Personal relationships should not influence staff actions.</p>
+                                <p>Do not abuse administrative powers or privileges. Use tools and permissions only for their intended purposes.</p>
+                                <p>Maintain confidentiality regarding staff discussions, decisions, and sensitive community information.</p>
+                                <p>Be active and responsive to community needs, reports, and questions in a timely manner.</p>
+                                <p>Follow the established chain of command for issues, appeals, and important decisions.</p>
+                                <p>Document actions and decisions appropriately for transparency and accountability.</p>
+                                <p>Continuously work to improve your knowledge of server rules, procedures, and roleplay standards.</p>
+                                <p>Support fellow staff members and maintain a positive, collaborative team environment.</p>
                             </div>
                         </div>
                     </div>
@@ -1496,4 +1354,3 @@ Criteriul 2 este permis doar pentru urmatoarele categorii de iteme: Arme Albe , 
     </script>
 </body>
 </html>
-
