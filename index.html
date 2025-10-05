@@ -6,13 +6,7 @@
     <title>FiveM Community Forum</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
         :root {
             --primary-black: #0f1419;
             --secondary-gray: #1e2328;
@@ -21,1353 +15,299 @@
             --text-light: #e1e7ed;
             --text-muted: #8a94a0;
             --light-blue: #4fc3f7;
-            --light-blue-transparent: rgba(79, 195, 247, 0.1);
-        }
-
-        body {
-            background-color: var(--primary-black);
-            color: var(--text-light);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            background-color: var(--secondary-gray);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--text-light);
-            position: relative;
-        }
-
-        .logo span {
-            color: var(--light-blue);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            position: relative;
-            padding: 0.5rem 0;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--light-blue);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--light-blue);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links a.active {
-            color: var(--light-blue);
-        }
-
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .account-icon {
-            background-color: var(--light-gray);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            border: 1px solid var(--light-blue);
-            cursor: pointer;
-        }
-
-        .account-icon:hover {
-            transform: scale(1.05);
-            background-color: var(--light-blue-transparent);
-        }
-
-        /* Main Content */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            margin-top: 80px;
-        }
-
-        /* Page Content */
-        .page-content {
-            display: none;
-        }
-
-        .page-content.active {
-            display: block;
-        }
-
-        /* Hero Section */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 4rem 0;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        .forum-logo {
-            width: 180px;
-            height: 180px;
-            background-color: var(--secondary-gray);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 2rem;
-            border: 3px solid var(--light-blue);
-        }
-
-        .forum-logo i {
-            font-size: 5rem;
-            color: var(--light-blue);
-        }
-
-        .forum-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            color: var(--text-light);
-        }
-
-        .forum-title span {
-            color: var(--light-blue);
-        }
-
-        .forum-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Staff Section */
-        .section-title {
-            font-size: 2.2rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            color: var(--text-light);
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: var(--light-blue);
-        }
-
-        .staff-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .staff-card {
-            background-color: var(--secondary-gray);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s;
-            border: 1px solid var(--accent-gray);
-        }
-
-        .staff-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--light-blue);
-        }
-
-        .staff-header {
-            padding: 1.5rem;
-            text-align: center;
-            border-bottom: 1px solid var(--accent-gray);
-        }
-
-        .staff-avatar {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            background-color: var(--light-gray);
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid var(--light-blue);
-        }
-
-        .staff-avatar i {
-            font-size: 2.5rem;
-            color: var(--light-blue);
-        }
-
-        .staff-name {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .staff-role {
-            color: var(--light-blue);
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .staff-info {
-            padding: 1.5rem;
-        }
-
-        .staff-info p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        /* Story Section */
-        .story-section {
-            background-color: var(--secondary-gray);
-            border-radius: 10px;
-            padding: 2.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            margin-bottom: 2rem;
-            border: 1px solid var(--accent-gray);
-        }
-
-        .story-content {
-            line-height: 1.8;
-            color: var(--text-light);
-        }
-
-        .story-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .highlight {
-            color: var(--light-blue);
-            font-weight: 600;
-        }
-
-        /* Rules Section */
-        .rules-container {
-            background-color: var(--secondary-gray);
-            border-radius: 10px;
-            padding: 2.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            margin-bottom: 2rem;
-            border: 1px solid var(--accent-gray);
-        }
-
-        .rules-category {
-            margin-bottom: 2.5rem;
-        }
-
-        .rules-category:last-child {
-            margin-bottom: 0;
-        }
-
-        .rules-category h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--light-blue);
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--accent-gray);
-        }
-
-        .rules-list {
-            list-style-type: none;
-        }
-
-        .rules-list li {
-            margin-bottom: 0.8rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .rules-list li::before {
-            content: '•';
-            color: var(--light-blue);
-            position: absolute;
-            left: 0;
-        }
-
-        /* Profile Section */
-        .profile-container {
-            background-color: var(--secondary-gray);
-            border-radius: 10px;
-            padding: 2.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            margin-bottom: 2rem;
-            border: 1px solid var(--accent-gray);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .profile-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--accent-gray);
-        }
-
-        .profile-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background-color: var(--light-gray);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1.5rem;
-            border: 3px solid var(--light-blue);
-            overflow: hidden;
-            position: relative;
-        }
-
-        .profile-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .profile-avatar i {
-            font-size: 3rem;
-            color: var(--light-blue);
-        }
-
-        .profile-info h2 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .profile-info p {
-            color: var(--text-muted);
-        }
-
-        .profile-banner {
-            height: 150px;
-            background-color: var(--light-gray);
-            border-radius: 10px;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid var(--accent-gray);
-            overflow: hidden;
-            position: relative;
-        }
-
-        .profile-banner img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .profile-banner i {
-            font-size: 3rem;
-            color: var(--text-muted);
-        }
-
-        .profile-actions {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .btn {
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 5px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary {
-            background-color: var(--light-blue);
-            color: var(--primary-black);
-        }
-
-        .btn-primary:hover {
-            background-color: #29b6f6;
-        }
-
-        .btn-secondary {
-            background-color: var(--light-gray);
-            color: var(--text-light);
-            border: 1px solid var(--accent-gray);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--accent-gray);
-        }
-
-        /* Discord Connection */
-        .discord-connection {
-            background-color: var(--light-gray);
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            border: 1px solid var(--accent-gray);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .discord-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .discord-icon {
-            width: 50px;
-            height: 50px;
-            background-color: #5865F2;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .discord-icon i {
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        /* Theme Selection */
-        .theme-selection {
-            margin-top: 2rem;
-        }
-
-        .theme-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .theme-option {
-            height: 80px;
-            border-radius: 5px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: all 0.3s;
-        }
-
-        .theme-option:hover {
-            transform: scale(1.05);
-        }
-
-        .theme-option.active {
-            border-color: var(--light-blue);
-        }
-
-        .theme-1 {
-            background: linear-gradient(135deg, #4fc3f7, #29b6f6);
-        }
-
-        .theme-2 {
-            background: linear-gradient(135deg, #81c784, #4caf50);
-        }
-
-        .theme-3 {
-            background: linear-gradient(135deg, #ffb74d, #ff9800);
-        }
-
-        .theme-4 {
-            background: linear-gradient(135deg, #f48fb1, #ec407a);
-        }
-
-        /* Edit Profile Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background-color: var(--secondary-gray);
-            border-radius: 10px;
-            padding: 2rem;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--accent-gray);
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--accent-gray);
-        }
-
-        .modal-header h3 {
-            color: var(--light-blue);
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .close-modal:hover {
-            color: var(--light-blue);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-light);
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 0.8rem;
-            border-radius: 5px;
-            border: 1px solid var(--accent-gray);
-            background-color: var(--light-gray);
-            color: var(--text-light);
-        }
-
-        .file-upload {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .file-upload-btn {
-            background-color: var(--light-gray);
-            color: var(--text-light);
-            padding: 0.8rem;
-            border-radius: 5px;
-            border: 1px dashed var(--accent-gray);
-            cursor: pointer;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .file-upload-btn:hover {
-            background-color: var(--accent-gray);
-            border-color: var(--light-blue);
-        }
-
-        /* Loading Spinner */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,.3);
-            border-radius: 50%;
-            border-top-color: #fff;
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--secondary-gray);
-            padding: 2rem;
-            text-align: center;
-            margin-top: 3rem;
-            border-top: 1px solid var(--accent-gray);
-        }
-
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            color: var(--text-light);
-        }
-
-        .footer-logo span {
-            color: var(--light-blue);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 1.5rem 0;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--light-blue);
-        }
-
-        .copyright {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 1rem;
-                padding: 1rem;
-            }
-
-            .nav-links {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .forum-title {
-                font-size: 2.5rem;
-            }
-
-            .staff-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .profile-header {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .profile-avatar {
-                margin-right: 0;
-                margin-bottom: 1rem;
-            }
-        }
-
-        /* Animations */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s, transform 0.8s;
-        }
-
-        .animate-on-scroll.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
+            --light-blue-transparent: rgba(79,195,247,0.1);
+        }
+        body { background-color: var(--primary-black); color: var(--text-light); min-height:100vh; overflow-x:hidden; }
+        .navbar { display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem; background-color: var(--secondary-gray); box-shadow:0 2px 10px rgba(0,0,0,.3); position:fixed; top:0; width:100%; z-index:1000; }
+        .logo { font-size:1.8rem; font-weight:bold; color:var(--text-light); }
+        .logo span { color:var(--light-blue); }
+        .nav-links { display:flex; gap:1.5rem; align-items:center; }
+        .nav-links a { color:var(--text-light); text-decoration:none; font-weight:500; transition:all .3s; display:flex; align-items:center; gap:.5rem; position:relative; padding:.5rem 0; }
+        .nav-links a::after { content:''; position:absolute; bottom:0; left:0; width:0; height:2px; background: var(--light-blue); transition: width .3s; }
+        .nav-links a:hover { color: var(--light-blue); }
+        .nav-links a:hover::after { width:100%; }
+        .nav-links a.active { color: var(--light-blue); }
+        .nav-links a.active::after { width:100%; }
+        .account-icon { background-color:var(--light-gray); width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; border:1px solid var(--light-blue); cursor:pointer; transition:.3s; }
+        .account-icon:hover { transform:scale(1.05); background-color:var(--light-blue-transparent); }
+        .container { max-width:1200px; margin:0 auto; padding:2rem; margin-top:80px; }
+        .page-content { display:none; }
+        .page-content.active { display:block; }
+        .hero { display:flex; flex-direction:column; align-items:center; text-align:center; padding:4rem 0; margin-bottom:2rem; }
+        .forum-logo { width:180px; height:180px; background-color:var(--secondary-gray); border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:2rem; border:3px solid var(--light-blue); }
+        .forum-logo i { font-size:5rem; color:var(--light-blue); }
+        .forum-title { font-size:3.5rem; font-weight:800; margin-bottom:1rem; color: var(--text-light); }
+        .forum-title span { color: var(--light-blue); }
+        .forum-subtitle { font-size:1.2rem; color: var(--text-muted); max-width:600px; margin:0 auto; }
+        h2.section-title { font-size:2.2rem; margin-bottom:2rem; text-align:center; color: var(--text-light); position:relative; padding-bottom:.5rem; }
+        h2.section-title::after { content:''; position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:80px; height:3px; background: var(--light-blue); }
+        .staff-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:2rem; margin-bottom:4rem; }
+        .staff-card { background-color:var(--secondary-gray); border-radius:10px; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,.2); transition:.3s; border:1px solid var(--accent-gray); }
+        .staff-card:hover { transform:translateY(-5px); border-color: var(--light-blue); }
+        .staff-header { padding:1.5rem; text-align:center; border-bottom:1px solid var(--accent-gray); }
+        .staff-avatar { width:90px; height:90px; border-radius:50%; background-color: var(--light-gray); margin:0 auto 1rem; display:flex; align-items:center; justify-content:center; border:2px solid var(--light-blue); }
+        .staff-avatar i { font-size:2.5rem; color:var(--light-blue); }
+        .staff-name { font-size:1.3rem; font-weight:600; margin-bottom:.5rem; }
+        .staff-role { color: var(--light-blue); font-weight:500; font-size:.9rem; }
+        .staff-info { padding:1.5rem; }
+        .staff-info p { font-size:.9rem; color:var(--text-muted); line-height:1.5; }
+        .story-section, .rules-container, .profile-container { background-color:var(--secondary-gray); border-radius:10px; padding:2.5rem; box-shadow:0 5px 15px rgba(0,0,0,.2); margin-bottom:2rem; border:1px solid var(--accent-gray); }
+        .story-content { line-height:1.8; color: var(--text-light); }
+        .story-content p { margin-bottom:1.5rem; }
+        .highlight { color: var(--light-blue); font-weight:600; }
+        .rules-category h3 { font-size:1.5rem; margin-bottom:1rem; color: var(--light-blue); padding-bottom:.5rem; border-bottom:1px solid var(--accent-gray); }
+        .rules-list { list-style:none; }
+        .rules-list li { margin-bottom:.8rem; padding-left:1.5rem; position:relative; }
+        .rules-list li::before { content:'•'; color: var(--light-blue); position:absolute; left:0; }
+        .profile-header { display:flex; align-items:center; margin-bottom:2rem; padding-bottom:1.5rem; border-bottom:1px solid var(--accent-gray); }
+        .profile-avatar { width:100px; height:100px; border-radius:50%; background-color: var(--light-gray); display:flex; align-items:center; justify-content:center; margin-right:1.5rem; border:3px solid var(--light-blue); overflow:hidden; position:relative; }
+        .profile-avatar img { width:100%; height:100%; object-fit:cover; }
+        .profile-avatar i { font-size:3rem; color: var(--light-blue); }
+        .profile-info h2 { font-size:1.8rem; margin-bottom:.5rem; }
+        .profile-info p { color: var(--text-muted); }
+        .profile-banner { height:150px; background-color:var(--light-gray); border-radius:10px; margin-bottom:2rem; display:flex; align-items:center; justify-content:center; border:1px solid var(--accent-gray); overflow:hidden; position:relative; }
+        .profile-banner img { width:100%; height:100%; object-fit:cover; }
+        .profile-banner i { font-size:3rem; color: var(--text-muted); }
+        .profile-actions { display:flex; gap:1rem; margin-top:2rem; }
+        .btn { padding:.8rem 1.5rem; border:none; border-radius:5px; font-weight:600; cursor:pointer; display:inline-flex; align-items:center; gap:.5rem; transition:.3s; }
+        .btn-primary { background-color: var(--light-blue); color: var(--primary-black); }
+        .btn-primary:hover { background-color:#29b6f6; }
+        .btn-secondary { background-color: var(--light-gray); color: var(--text-light); border:1px solid var(--accent-gray); }
+        .btn-secondary:hover { background-color: var(--accent-gray); }
+        .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,.7); z-index:2000; align-items:center; justify-content:center; }
+        .modal.active { display:flex; }
+        .modal-content { background-color:var(--secondary-gray); border-radius:10px; padding:2rem; width:90%; max-width:500px; box-shadow:0 5px 25px rgba(0,0,0,.5); border:1px solid var(--accent-gray); }
+        .modal-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid var(--accent-gray); }
+        .modal-header h3 { color: var(--light-blue); }
+        .close-modal { background:none; border:none; color: var(--text-muted); font-size:1.5rem; cursor:pointer; transition:.3s; }
+        .close-modal:hover { color: var(--light-blue); }
+        .form-group { margin-bottom:1.5rem; }
+        .form-group label { display:block; margin-bottom:.5rem; color: var(--text-light); }
+        .form-group input { width:100%; padding:.8rem; border-radius:5px; border:1px solid var(--accent-gray); background-color: var(--light-gray); color: var(--text-light); }
+        .loading { display:inline-block; width:20px; height:20px; border:3px solid rgba(255,255,255,.3); border-radius:50%; border-top-color:#fff; animation:spin 1s ease-in-out infinite; }
+        @keyframes spin { to{transform:rotate(360deg);} }
+        footer { background-color: var(--secondary-gray); padding:2rem; text-align:center; margin-top:3rem; border-top:1px solid var(--accent-gray); }
+        .footer-content { max-width:800px; margin:0 auto; }
+        .footer-logo { font-size:1.5rem; font-weight:bold; margin-bottom:1rem; color: var(--text-light); }
+        .footer-logo span { color: var(--light-blue); }
+        .footer-links { display:flex; justify-content:center; gap:2rem; margin:1.5rem 0; flex-wrap:wrap; }
+        .footer-links a { color: var(--text-muted); text-decoration:none; transition:.3s; }
+        .footer-links a:hover { color: var(--light-blue); }
+        .copyright { color: var(--text-muted); font-size:.9rem; }
+        @media(max-width:768px) { .navbar{flex-direction:column; gap:1rem;} .nav-links{flex-wrap:wrap; justify-content:center;} }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+
+    <!-- NAVBAR -->
     <nav class="navbar">
-        <div class="logo">FiveM <span>Community</span></div>
+        <div class="logo">FiveM <span>Forum</span></div>
         <div class="nav-links">
-            <a href="#" class="nav-link active" data-page="home"><i class="fas fa-home"></i> Home</a>
-            <a href="#" class="nav-link" data-page="rules"><i class="fas fa-book"></i> Rules</a>
-            <div class="account-icon" id="account-btn"><i class="fas fa-user"></i></div>
+            <a href="#" class="active" data-page="home"><i class="fas fa-home"></i> Home</a>
+            <a href="#" data-page="staff"><i class="fas fa-user-shield"></i> Staff</a>
+            <a href="#" data-page="story"><i class="fas fa-book"></i> Story</a>
+            <a href="#" data-page="rules"><i class="fas fa-gavel"></i> Rules</a>
+            <div class="account-icon" id="account-icon"><i class="fas fa-user"></i></div>
         </div>
     </nav>
 
-    <!-- Main Content -->
     <div class="container">
-        <!-- Home Page -->
-        <div class="page-content active" id="home-page">
-            <!-- Hero Section -->
-            <section class="hero">
-                <div class="forum-logo">
-                    <i class="fas fa-gamepad"></i>
-                </div>
-                <h1 class="forum-title">FiveM <span>Community</span></h1>
-                <p class="forum-subtitle">Welcome to our immersive roleplay server. Join our community and experience the next level of FiveM gameplay.</p>
-            </section>
 
-            <!-- Staff Section -->
-            <h2 class="section-title animate-on-scroll">Our Staff Team</h2>
+        <!-- HOME PAGE -->
+        <div class="page-content active" id="home">
+            <div class="hero">
+                <div class="forum-logo"><i class="fas fa-gamepad"></i></div>
+                <h1 class="forum-title">Welcome to <span>FiveM</span></h1>
+                <p class="forum-subtitle">Join our community, manage your profile, and explore the world of FiveM.</p>
+            </div>
+
+            <!-- LOGIN / REGISTER -->
+            <div class="story-section" id="auth-section">
+                <h2 class="section-title">Login or Register</h2>
+                <p style="text-align:center; color:var(--text-muted); margin-bottom:1.5rem;">Access your profile by logging in or creating a new account</p>
+                <div style="display:flex; justify-content:center; gap:1rem;">
+                    <button class="btn btn-primary" id="login-btn"><i class="fas fa-sign-in-alt"></i> Login</button>
+                    <button class="btn btn-secondary" id="register-btn"><i class="fas fa-user-plus"></i> Register</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- STAFF PAGE -->
+        <div class="page-content" id="staff">
+            <h2 class="section-title">Staff Members</h2>
             <div class="staff-grid">
-                <!-- Staff Member 1 -->
-                <div class="staff-card animate-on-scroll">
+                <div class="staff-card">
                     <div class="staff-header">
-                        <div class="staff-avatar">
-                            <i class="fas fa-crown"></i>
-                        </div>
-                        <h3 class="staff-name">Alex Johnson</h3>
-                        <div class="staff-role">Server Owner</div>
+                        <div class="staff-avatar"><i class="fas fa-user-shield"></i></div>
+                        <div class="staff-name">AdminName</div>
+                        <div class="staff-role">Administrator</div>
                     </div>
                     <div class="staff-info">
-                        <p>Responsible for overall server management and development. Contact for serious inquiries and partnerships.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet facilisis urna.</p>
                     </div>
                 </div>
-
-                <!-- Staff Member 2 -->
-                <div class="staff-card animate-on-scroll">
+                <div class="staff-card">
                     <div class="staff-header">
-                        <div class="staff-avatar">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3 class="staff-name">Sarah Miller</h3>
-                        <div class="staff-role">Head Administrator</div>
+                        <div class="staff-avatar"><i class="fas fa-user"></i></div>
+                        <div class="staff-name">ModName</div>
+                        <div class="staff-role">Moderator</div>
                     </div>
                     <div class="staff-info">
-                        <p>Manages the admin team and handles complex player issues. Ensures server rules are properly enforced.</p>
-                    </div>
-                </div>
-
-                <!-- Staff Member 3 -->
-                <div class="staff-card animate-on-scroll">
-                    <div class="staff-header">
-                        <div class="staff-avatar">
-                            <i class="fas fa-user-shield"></i>
-                        </div>
-                        <h3 class="staff-name">Mike Rodriguez</h3>
-                        <div class="staff-role">Senior Moderator</div>
-                    </div>
-                    <div class="staff-info">
-                        <p>Focuses on player support and rule enforcement. Handles reports and maintains a positive community environment.</p>
-                    </div>
-                </div>
-
-                <!-- Staff Member 4 -->
-                <div class="staff-card animate-on-scroll">
-                    <div class="staff-header">
-                        <div class="staff-avatar">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3 class="staff-name">David Chen</h3>
-                        <div class="staff-role">Developer</div>
-                    </div>
-                    <div class="staff-info">
-                        <p>Creates custom scripts and maintains server infrastructure. Works on new features and bug fixes.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet facilisis urna.</p>
                     </div>
                 </div>
             </div>
-
-            <!-- Story Section -->
-            <h2 class="section-title animate-on-scroll">Our Server Story</h2>
-            <section class="story-section animate-on-scroll">
-                <div class="story-content">
-                    <p>Welcome to <span class="highlight">FiveM Community</span>, a server born from a passion for immersive roleplay and a vision to create something truly special in the FiveM universe. Our journey began in 2020 when a small group of dedicated players noticed a gap in the market for a server that balanced serious roleplay with accessibility for newcomers.</p>
-                    
-                    <p>Over the years, we've grown from a modest 10-player server to a thriving community with hundreds of active members. Our <span class="highlight">unique economic system</span>, custom jobs, and deep character development mechanics set us apart from other roleplay servers.</p>
-                    
-                    <p>What makes our community special is our commitment to <span class="highlight">quality over quantity</span>. We carefully vet our members to ensure everyone is dedicated to creating compelling stories and respecting the roleplay experience. Our dedicated staff team works tirelessly to maintain a balanced and fair environment where every player has the opportunity to thrive.</p>
-                    
-                    <p>As we look to the future, we're excited to announce our <span class="highlight">upcoming expansion</span> featuring new districts, professions, and gameplay mechanics that will take the FiveM experience to unprecedented heights. Join us on this incredible journey and become part of our story.</p>
-                </div>
-            </section>
         </div>
 
-        <!-- Rules Page -->
-        <div class="page-content" id="rules-page">
-            <h2 class="section-title">Server Rules</h2>
+        <!-- STORY PAGE -->
+        <div class="page-content" id="story">
+            <h2 class="section-title">Our Story</h2>
+            <div class="story-content">
+                <p>Welcome to <span class="highlight">FiveM Forum</span>, a place where gaming enthusiasts come together to share experiences.</p>
+                <p>Our community thrives on collaboration, creativity, and having fun.</p>
+            </div>
+        </div>
+
+        <!-- RULES PAGE -->
+        <div class="page-content" id="rules">
+            <h2 class="section-title">Forum Rules</h2>
             <div class="rules-container">
                 <div class="rules-category">
-                    <h3>General Rules</h3>
+                    <h3>General</h3>
                     <ul class="rules-list">
-                        <li>Respect all players and staff members</li>
-                        <li>No harassment, hate speech, or discrimination of any kind</li>
-                        <li>English only in global chat</li>
-                        <li>No advertising other servers or communities</li>
-                        <li>Follow all instructions from staff members</li>
+                        <li>No spamming or trolling.</li>
+                        <li>Respect all members.</li>
+                        <li>Follow forum guidelines.</li>
                     </ul>
                 </div>
-
                 <div class="rules-category">
-                    <h3>Roleplay Rules</h3>
+                    <h3>Content</h3>
                     <ul class="rules-list">
-                        <li>Stay in character at all times while roleplaying</li>
-                        <li>No metagaming (using OOC information in-character)</li>
-                        <li>No powergaming (forcing actions on other players)</li>
-                        <li>FearRP - value your character's life appropriately</li>
-                        <li>New Life Rule - if your character dies, you lose memory of events leading to death</li>
-                    </ul>
-                </div>
-
-                <div class="rules-category">
-                    <h3>Gameplay Rules</h3>
-                    <ul class="rules-list">
-                        <li>No cheating, exploiting, or hacking</li>
-                        <li>No random deathmatching (RDM)</li>
-                        <li>No vehicle deathmatching (VDM)</li>
-                        <li>No combat logging during active roleplay situations</li>
-                        <li>Follow all server-specific mechanics and systems</li>
-                    </ul>
-                </div>
-
-                <div class="rules-category">
-                    <h3>Voice Chat Rules</h3>
-                    <ul class="rules-list">
-                        <li>Use push-to-talk in crowded areas</li>
-                        <li>No background noise, music, or soundboards</li>
-                        <li>Keep voice chat clear and audible</li>
-                        <li>Respect others in voice channels</li>
-                        <li>No screaming or excessively loud volumes</li>
+                        <li>Post relevant content only.</li>
+                        <li>No illegal or NSFW material.</li>
+                        <li>Use proper channels.</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Profile Page -->
-        <div class="page-content" id="profile-page">
-            <h2 class="section-title">Your Profile</h2>
-            
-            <!-- Discord Connection -->
-            <div class="discord-connection" id="discord-connection">
-                <div class="discord-info">
-                    <div class="discord-icon">
-                        <i class="fab fa-discord"></i>
+        <!-- PROFILE PAGE -->
+        <div class="page-content" id="profile">
+            <div class="profile-banner" id="profile-banner"><i class="fas fa-image"></i></div>
+            <div class="profile-header">
+                <div class="profile-avatar" id="profile-avatar"><i class="fas fa-user"></i></div>
+                <div class="profile-info">
+                    <h2 id="profile-username">Username</h2>
+                    <p id="profile-email">user@example.com</p>
+                    <div class="profile-actions">
+                        <button class="btn btn-primary" id="edit-profile">Edit Profile</button>
+                        <button class="btn btn-secondary" id="logout-btn">Logout</button>
                     </div>
-                    <div>
-                        <h3>Connect Discord Account</h3>
-                        <p>Link your Discord account to access all server features</p>
-                    </div>
-                </div>
-                <button class="btn btn-primary" id="connect-discord">
-                    <i class="fab fa-discord"></i> Connect Discord
-                </button>
-            </div>
-
-            <!-- Profile Info -->
-            <div class="profile-container" id="profile-container" style="display: none;">
-                <div class="profile-header">
-                    <div class="profile-avatar" id="profile-avatar">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="profile-info">
-                        <h2 id="profile-name">Player Name</h2>
-                        <p id="profile-rank">Community Member</p>
-                    </div>
-                </div>
-
-                <div class="profile-banner" id="profile-banner">
-                    <i class="fas fa-image"></i> Profile Banner
-                </div>
-
-                <div class="theme-selection">
-                    <h3>Profile Theme</h3>
-                    <div class="theme-options">
-                        <div class="theme-option theme-1 active" data-theme="theme-1"></div>
-                        <div class="theme-option theme-2" data-theme="theme-2"></div>
-                        <div class="theme-option theme-3" data-theme="theme-3"></div>
-                        <div class="theme-option theme-4" data-theme="theme-4"></div>
-                    </div>
-                </div>
-
-                <div class="profile-actions">
-                    <button class="btn btn-primary" id="edit-profile">
-                        <i class="fas fa-edit"></i> Edit Profile
-                    </button>
-                    <button class="btn btn-secondary" id="back-to-home">
-                        <i class="fas fa-arrow-left"></i> Back to Home
-                    </button>
                 </div>
             </div>
         </div>
+
     </div>
 
-    <!-- Edit Profile Modal -->
-    <div class="modal" id="edit-profile-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Edit Profile</h3>
-                <button class="close-modal" id="close-modal">&times;</button>
-            </div>
-            <div class="form-group">
-                <label for="profile-name-input">Display Name</label>
-                <input type="text" id="profile-name-input" placeholder="Enter your display name">
-            </div>
-            <div class="form-group">
-                <label>Profile Picture</label>
-                <div class="file-upload">
-                    <input type="file" id="avatar-upload" accept="image/*" style="display: none;">
-                    <div class="file-upload-btn" id="avatar-upload-btn">Choose Avatar Image</div>
-                    <small>Recommended: 200x200 pixels</small>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>Profile Banner</label>
-                <div class="file-upload">
-                    <input type="file" id="banner-upload" accept="image/*" style="display: none;">
-                    <div class="file-upload-btn" id="banner-upload-btn">Choose Banner Image</div>
-                    <small>Recommended: 1200x300 pixels</small>
-                </div>
-            </div>
-            <div class="profile-actions">
-                <button class="btn btn-primary" id="save-profile">Save Changes</button>
-                <button class="btn btn-secondary" id="cancel-edit">Cancel</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer>
         <div class="footer-content">
-            <div class="footer-logo">FiveM <span>Community</span></div>
+            <div class="footer-logo">FiveM <span>Forum</span></div>
             <div class="footer-links">
                 <a href="#">Home</a>
-                <a href="#">Rules</a>
                 <a href="#">Staff</a>
-                <a href="#">Applications</a>
-                <a href="#">Discord</a>
+                <a href="#">Story</a>
+                <a href="#">Rules</a>
             </div>
-            <p class="copyright">© 2023 FiveM Community. All rights reserved.</p>
+            <div class="copyright">© 2025 FiveM Forum. All Rights Reserved.</div>
         </div>
     </footer>
 
+    <!-- SCRIPT -->
     <script>
-        // API endpoints - UPDATE THESE WITH YOUR ACTUAL BACKEND ENDPOINTS
-        const API_BASE_URL = 'https://your-backend-domain.com/api';
-        const ENDPOINTS = {
-            discordAuth: `${API_BASE_URL}/auth/discord`,
-            getUserProfile: `${API_BASE_URL}/profile`,
-            updateProfile: `${API_BASE_URL}/profile/update`,
-            uploadImage: `${API_BASE_URL}/upload`
-        };
+        const pages = document.querySelectorAll('.page-content');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const accountIcon = document.getElementById('account-icon');
+        const authSection = document.getElementById('auth-section');
+        const profilePage = document.getElementById('profile');
 
-        // User data storage
-        let userData = {
-            isAuthenticated: false,
-            discordConnected: false,
-            profileName: "Player Name",
-            profileAvatar: null,
-            profileBanner: null,
-            profileTheme: "theme-1"
-        };
+        let userData = { isAuthenticated:false };
 
-        // Check authentication status on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            checkAuthStatus();
-            initializeEventListeners();
-            setupScrollAnimations();
+        function showPage(pageId){
+            pages.forEach(p=>p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            navLinks.forEach(a=>a.classList.remove('active'));
+            document.querySelector(`.nav-links a[data-page="${pageId}"]`)?.classList.add('active');
+        }
+
+        navLinks.forEach(link=>{
+            link.addEventListener('click', e=>{
+                e.preventDefault();
+                const page = link.getAttribute('data-page');
+                showPage(page);
+            });
         });
 
-        // Check if user is authenticated
-        async function checkAuthStatus() {
-            try {
-                const response = await fetch(ENDPOINTS.getUserProfile, {
-                    credentials: 'include'
-                });
-                
-                if (response.ok) {
-                    const userProfile = await response.json();
-                    userData = { ...userData, ...userProfile, isAuthenticated: true };
-                    updateUIForAuthenticatedUser();
-                } else {
-                    updateUIForUnauthenticatedUser();
-                }
-            } catch (error) {
-                console.error('Error checking auth status:', error);
-                updateUIForUnauthenticatedUser();
-            }
-        }
-
-        // Initialize all event listeners
-        function initializeEventListeners() {
-            const navLinks = document.querySelectorAll('.nav-link');
-            const pages = document.querySelectorAll('.page-content');
-            const accountBtn = document.getElementById('account-btn');
-            const backToHomeBtn = document.getElementById('back-to-home');
-            const connectDiscordBtn = document.getElementById('connect-discord');
-            const editProfileBtn = document.getElementById('edit-profile');
-            const themeOptions = document.querySelectorAll('.theme-option');
-            const editProfileModal = document.getElementById('edit-profile-modal');
-            const closeModalBtn = document.getElementById('close-modal');
-            const cancelEditBtn = document.getElementById('cancel-edit');
-            const saveProfileBtn = document.getElementById('save-profile');
-            const profileNameInput = document.getElementById('profile-name-input');
-            const avatarUploadBtn = document.getElementById('avatar-upload-btn');
-            const avatarUpload = document.getElementById('avatar-upload');
-            const bannerUploadBtn = document.getElementById('banner-upload-btn');
-            const bannerUpload = document.getElementById('banner-upload');
-            const profileContainer = document.getElementById('profile-container');
-            const discordConnection = document.getElementById('discord-connection');
-            
-            // Navigation functionality
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetPage = this.getAttribute('data-page');
-                    
-                    // Update active nav link
-                    navLinks.forEach(nav => nav.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Show target page
-                    pages.forEach(page => {
-                        page.classList.remove('active');
-                        if (page.id === `${targetPage}-page`) {
-                            page.classList.add('active');
-                        }
-                    });
-                });
-            });
-            
-            // Account button functionality
-            accountBtn.addEventListener('click', function(e) {
-                // Update active nav link
-                navLinks.forEach(nav => nav.classList.remove('active'));
-                
-                // Show profile page
-                pages.forEach(page => {
-                    page.classList.remove('active');
-                    if (page.id === 'profile-page') {
-                        page.classList.add('active');
-                    }
-                });
-                
-                // Show appropriate content based on authentication
-                if (userData.isAuthenticated) {
-                    discordConnection.style.display = 'none';
-                    profileContainer.style.display = 'block';
-                } else {
-                    discordConnection.style.display = 'flex';
-                    profileContainer.style.display = 'none';
-                }
-            });
-            
-            // Back to home button
-            backToHomeBtn.addEventListener('click', function() {
-                navLinks.forEach(nav => {
-                    nav.classList.remove('active');
-                    if (nav.getAttribute('data-page') === 'home') {
-                        nav.classList.add('active');
-                    }
-                });
-                
-                pages.forEach(page => {
-                    page.classList.remove('active');
-                    if (page.id === 'home-page') {
-                        page.classList.add('active');
-                    }
-                });
-            });
-            
-            // Connect Discord button
-            connectDiscordBtn.addEventListener('click', function() {
-                initiateDiscordAuth();
-            });
-            
-            // Edit Profile button
-            editProfileBtn.addEventListener('click', function() {
-                // Populate modal with current data
-                profileNameInput.value = userData.profileName;
-                
-                // Show modal
-                editProfileModal.classList.add('active');
-            });
-            
-            // Close modal buttons
-            closeModalBtn.addEventListener('click', closeModal);
-            cancelEditBtn.addEventListener('click', closeModal);
-            
-            // Save profile changes
-            saveProfileBtn.addEventListener('click', function() {
-                saveProfileChanges();
-            });
-            
-            // Theme selection
-            themeOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    themeOptions.forEach(opt => opt.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    userData.profileTheme = this.getAttribute('data-theme');
-                    updateProfileTheme();
-                });
-            });
-            
-            // Avatar upload
-            avatarUploadBtn.addEventListener('click', function() {
-                avatarUpload.click();
-            });
-            
-            avatarUpload.addEventListener('change', function(e) {
-                if (e.target.files && e.target.files[0]) {
-                    uploadImage(e.target.files[0], 'avatar');
-                }
-            });
-            
-            // Banner upload
-            bannerUploadBtn.addEventListener('click', function() {
-                bannerUpload.click();
-            });
-            
-            bannerUpload.addEventListener('change', function(e) {
-                if (e.target.files && e.target.files[0]) {
-                    uploadImage(e.target.files[0], 'banner');
-                }
-            });
-        }
-
-        // Initiate Discord OAuth flow
-        function initiateDiscordAuth() {
-            // Replace with your actual Discord OAuth URL
-            const discordAuthUrl = `https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=${encodeURIComponent('https://your-domain.com/auth/callback')}&response_type=code&scope=identify%20email`;
-            
-            // Redirect to Discord OAuth
-            window.location.href = discordAuthUrl;
-        }
-
-        // Save profile changes to backend
-        async function saveProfileChanges() {
-            const saveBtn = document.getElementById('save-profile');
-            const originalText = saveBtn.innerHTML;
-            
-            try {
-                // Show loading state
-                saveBtn.innerHTML = '<div class="loading"></div> Saving...';
-                saveBtn.disabled = true;
-                
-                const profileData = {
-                    displayName: document.getElementById('profile-name-input').value.trim(),
-                    theme: userData.profileTheme
-                };
-                
-                const response = await fetch(ENDPOINTS.updateProfile, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    credentials: 'include',
-                    body: JSON.stringify(profileData)
-                });
-                
-                if (response.ok) {
-                    const updatedProfile = await response.json();
-                    userData = { ...userData, ...updatedProfile };
-                    updateUIForAuthenticatedUser();
-                    closeModal();
-                    showNotification('Profile updated successfully!', 'success');
-                } else {
-                    throw new Error('Failed to update profile');
-                }
-            } catch (error) {
-                console.error('Error saving profile:', error);
-                showNotification('Failed to update profile. Please try again.', 'error');
-            } finally {
-                saveBtn.innerHTML = originalText;
-                saveBtn.disabled = false;
-            }
-        }
-
-        // Upload image to backend
-        async function uploadImage(file, type) {
-            try {
-                const formData = new FormData();
-                formData.append('image', file);
-                formData.append('type', type);
-                
-                const response = await fetch(ENDPOINTS.uploadImage, {
-                    method: 'POST',
-                    credentials: 'include',
-                    body: formData
-                });
-                
-                if (response.ok) {
-                    const result = await response.json();
-                    
-                    if (type === 'avatar') {
-                        userData.profileAvatar = result.imageUrl;
-                        updateProfileAvatar();
-                    } else if (type === 'banner') {
-                        userData.profileBanner = result.imageUrl;
-                        updateProfileBanner();
-                    }
-                    
-                    showNotification('Image uploaded successfully!', 'success');
-                } else {
-                    throw new Error('Failed to upload image');
-                }
-            } catch (error) {
-                console.error('Error uploading image:', error);
-                showNotification('Failed to upload image. Please try again.', 'error');
-            }
-        }
-
-        // Update UI for authenticated user
-        function updateUIForAuthenticatedUser() {
-            document.getElementById('profile-name').textContent = userData.profileName;
-            document.getElementById('profile-rank').textContent = userData.rank || 'Community Member';
-            
-            updateProfileAvatar();
-            updateProfileBanner();
-            updateProfileTheme();
-            
-            // Show profile container, hide discord connection
-            document.getElementById('discord-connection').style.display = 'none';
-            document.getElementById('profile-container').style.display = 'block';
-        }
-
-        // Update UI for unauthenticated user
-        function updateUIForUnauthenticatedUser() {
-            document.getElementById('discord-connection').style.display = 'flex';
-            document.getElementById('profile-container').style.display = 'none';
-        }
-
-        // Update profile avatar
-        function updateProfileAvatar() {
-            const profileAvatar = document.getElementById('profile-avatar');
-            
-            if (userData.profileAvatar) {
-                profileAvatar.innerHTML = `<img src="${userData.profileAvatar}" alt="Profile Avatar">`;
+        accountIcon.addEventListener('click', ()=>{
+            if(userData.isAuthenticated){
+                showPage('profile');
             } else {
-                profileAvatar.innerHTML = '<i class="fas fa-user"></i>';
+                showPage('home');
+                authSection.scrollIntoView({behavior:'smooth'});
+            }
+        });
+
+        // LOGIN / REGISTER
+        const loginBtn = document.getElementById('login-btn');
+        const registerBtn = document.getElementById('register-btn');
+        const logoutBtn = document.getElementById('logout-btn');
+
+        function checkAuthStatus(){
+            if(localStorage.getItem('user')){
+                userData = JSON.parse(localStorage.getItem('user'));
+                userData.isAuthenticated = true;
+                updateUIForAuthenticatedUser();
             }
         }
 
-        // Update profile banner
-        function updateProfileBanner() {
-            const profileBanner = document.getElementById('profile-banner');
-            
-            if (userData.profileBanner) {
-                profileBanner.innerHTML = `<img src="${userData.profileBanner}" alt="Profile Banner">`;
-            } else {
-                profileBanner.innerHTML = '<i class="fas fa-image"></i> Profile Banner';
+        loginBtn.addEventListener('click', async ()=>{
+            const email = prompt("Enter your email:");
+            const password = prompt("Enter your password:");
+            if(!email || !password) return alert("Both fields are required!");
+            userData = { username:'User', email, isAuthenticated:true };
+            localStorage.setItem('user', JSON.stringify(userData));
+            updateUIForAuthenticatedUser();
+            alert("Logged in successfully!");
+        });
+
+        registerBtn.addEventListener('click', async ()=>{
+            const email = prompt("Enter your email:");
+            const username = prompt("Choose a username:");
+            const password = prompt("Choose a password:");
+            if(!email || !password || !username) return alert("All fields are required!");
+            userData = { username, email, isAuthenticated:true };
+            localStorage.setItem('user', JSON.stringify(userData));
+            updateUIForAuthenticatedUser();
+            alert("Registered and logged in successfully!");
+        });
+
+        logoutBtn.addEventListener('click', ()=>{
+            localStorage.removeItem('user');
+            userData = { isAuthenticated:false };
+            showPage('home');
+            alert("Logged out successfully!");
+        });
+
+        function updateUIForAuthenticatedUser(){
+            if(userData.isAuthenticated){
+                authSection.style.display = 'none';
+                profilePage.querySelector('#profile-username').innerText = userData.username;
+                profilePage.querySelector('#profile-email').innerText = userData.email;
+                showPage('profile');
             }
         }
 
-        // Update profile theme
-        function updateProfileTheme() {
-            const themeOptions = document.querySelectorAll('.theme-option');
-            themeOptions.forEach(option => {
-                if (option.getAttribute('data-theme') === userData.profileTheme) {
-                    option.classList.add('active');
-                } else {
-                    option.classList.remove('active');
-                }
-            });
-        }
-
-        // Close modal function
-        function closeModal() {
-            document.getElementById('edit-profile-modal').classList.remove('active');
-        }
-
-        // Show notification
-        function showNotification(message, type) {
-            // Create notification element
-            const notification = document.createElement('div');
-            notification.textContent = message;
-            notification.style.position = 'fixed';
-            notification.style.top = '20px';
-            notification.style.right = '20px';
-            notification.style.padding = '1rem 1.5rem';
-            notification.style.borderRadius = '5px';
-            notification.style.color = 'white';
-            notification.style.zIndex = '3000';
-            notification.style.fontWeight = '500';
-            notification.style.boxShadow = '0 5px 15px rgba(0,0,0,0.3)';
-            
-            if (type === 'success') {
-                notification.style.backgroundColor = '#4caf50';
-            } else {
-                notification.style.backgroundColor = '#f44336';
-            }
-            
-            document.body.appendChild(notification);
-            
-            // Remove notification after 3 seconds
-            setTimeout(() => {
-                notification.remove();
-            }, 3000);
-        }
-
-        // Scroll animations - continuous observation
-        function setupScrollAnimations() {
-            const animatedElements = document.querySelectorAll('.animate-on-scroll');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animated');
-                    } else {
-                        // Remove the class when element is out of view to re-trigger animation
-                        entry.target.classList.remove('animated');
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-            
-            animatedElements.forEach(element => {
-                observer.observe(element);
-            });
-        }
+        checkAuthStatus();
     </script>
 </body>
 </html>
