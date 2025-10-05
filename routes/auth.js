@@ -1,34 +1,29 @@
 const express = require('express');
 const axios = require('axios');
 const { v4: uuidv4 } = require('uuid');
-const { dbRun, dbGet, dbAll } = require('../database/database');
+const jwt = require('jsonwebtoken');
+const { dbRun, dbGet } = require('../database/database');
 const discordConfig = require('../config/discord');
 
 const router = express.Router();
 
-// Generate Discord OAuth URL and redirect user
+const JWT_SECRET = process.env.JWT_SECRET || 'secretul_tau_super_lung';
+
+// ✅ LOGIN cu Discord OAuth2
 router.get('/discord', (req, res) => {
   const state = uuidv4();
-  
-  // Store state in session for security
-  req.session.oauthState = state;
-  
+
   const authUrl = `${discordConfig.authUrl}?client_id=${discordConfig.clientId}&redirect_uri=${encodeURIComponent(discordConfig.redirectUri)}&response_type=code&scope=${discordConfig.scopes.join('%20')}&state=${state}`;
-  
+
   res.json({ authUrl });
 });
 
-// Handle Discord OAuth callback
+// ✅ CALLBACK după ce userul apasă "Authorize"
 router.get('/discord/callback', async (req, res) => {
-  const { code, state } = req.query;
-  
-  // Verify state to prevent CSRF
-  if (!state || state !== req.session.oauthState) {
-    return res.status(400).json({ error: 'Invalid state parameter' });
-  }
-  
+  const { code } = req.query;
+
   try {
-    // Exchange code for access token
+    // 1. Cerem token de la Discord
     const tokenResponse = await axios.post(discordConfig.tokenUrl, new URLSearchParams({
       client_id: discordConfig.clientId,
       client_secret: discordConfig.clientSecret,
@@ -40,26 +35,26 @@ router.get('/discord/callback', async (req, res) => {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     });
-    
+
     const { access_token } = tokenResponse.data;
-    
-    // Get user info from Discord
+
+    // 2. Luăm user info de la Discord
     const userResponse = await axios.get(discordConfig.userUrl, {
       headers: {
         Authorization: `Bearer ${access_token}`
       }
     });
-    
+
     const discordUser = userResponse.data;
-    
-    // Check if user exists in our database
+
+    // 3. Verificăm userul în baza noastră de date
     let user = await dbGet(
       'SELECT * FROM users WHERE discord_id = ?',
       [discordUser.id]
     );
-    
+
     if (!user) {
-      // Create new user
+      // ✅ dacă nu există, îl creăm
       const result = await dbRun(
         `INSERT INTO users (discord_id, discord_username, discord_discriminator, discord_avatar, discord_email, display_name) 
          VALUES (?, ?, ?, ?, ?, ?)`,
@@ -72,57 +67,51 @@ router.get('/discord/callback', async (req, res) => {
           discordUser.username
         ]
       );
-      
-      user = await dbGet('SELECT * FROM users WHERE id = ?', [result.id]);
+
+      user = await dbGet('SELECT * FROM users WHERE id = ?', [result.lastID]);
     }
-    
-    // Store user in session
-    req.session.userId = user.id;
-    req.session.discordId = user.discord_id;
-    
-    // Redirect to frontend profile page
+
+    // 4. Creăm un JWT token
+    const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '7d' });
+
+    // 5. Trimitem tokenul către frontend
     const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:8000';
-    res.redirect(`${frontendUrl}/#profile`);
-    
+    res.redirect(`${frontendUrl}/#token=${token}`);
+
   } catch (error) {
     console.error('Discord OAuth error:', error.response?.data || error.message);
     res.status(500).json({ error: 'Authentication failed' });
   }
 });
 
-// Get current user
+// ✅ GET USER (din JWT)
 router.get('/me', async (req, res) => {
-  if (!req.session.userId) {
-    return res.status(401).json({ error: 'Not authenticated' });
-  }
-  
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (!token) return res.status(401).json({ error: 'Not authenticated' });
+
   try {
+    const decoded = jwt.verify(token, JWT_SECRET);
     const user = await dbGet(
       `SELECT id, discord_id, discord_username, discord_discriminator, 
               display_name, avatar_url, banner_url, profile_theme, rank, created_at
        FROM users WHERE id = ?`,
-      [req.session.userId]
+      [decoded.id]
     );
-    
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-    
+
+    if (!user) return res.status(404).json({ error: 'User not found' });
+
     res.json(user);
-  } catch (error) {
-    console.error('Error fetching user:', error);
-    res.status(500).json({ error: 'Failed to fetch user data' });
+  } catch (err) {
+    console.error('JWT error:', err);
+    res.status(403).json({ error: 'Invalid or expired token' });
   }
 });
 
-// Logout
+// ✅ LOGOUT – frontend doar șterge token-ul
 router.post('/logout', (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      return res.status(500).json({ error: 'Failed to logout' });
-    }
-    res.json({ message: 'Logged out successfully' });
-  });
+  res.json({ message: 'Logged out, just delete token on client' });
 });
 
 module.exports = router;
