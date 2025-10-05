@@ -47,20 +47,6 @@
             box-shadow: var(--glass-shadow);
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--secondary-gray);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--gradient-blue);
-            border-radius: 4px;
-        }
-
         /* Navigation */
         .navbar {
             display: flex;
@@ -86,7 +72,6 @@
         .logo-img {
             width: 50px;
             height: 50px;
-            background: var(--gradient-blue);
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -94,6 +79,7 @@
             font-weight: bold;
             color: white;
             font-size: 1.2rem;
+            background: var(--gradient-blue);
         }
 
         .logo-text {
@@ -174,6 +160,14 @@
             margin: 0 auto;
             padding: 2rem;
             margin-top: 100px;
+        }
+
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
         }
 
         /* Hero Section */
@@ -384,7 +378,7 @@
 
         .staff-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2.5rem;
         }
 
@@ -394,16 +388,29 @@
             border: 1px solid var(--glass-border);
             border-radius: 20px;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             position: relative;
-            transform-style: preserve-3d;
-            perspective: 1000px;
         }
 
         .staff-card:hover {
-            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            transform: translateY(-15px) scale(1.02);
             border-color: var(--swit-light-blue);
-            box-shadow: 0 20px 40px rgba(0, 153, 255, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 153, 255, 0.3);
+        }
+
+        .staff-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 153, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .staff-card:hover::before {
+            left: 100%;
         }
 
         .staff-header {
@@ -411,6 +418,7 @@
             text-align: center;
             border-bottom: 1px solid var(--glass-border);
             position: relative;
+            overflow: hidden;
         }
 
         .staff-header::before {
@@ -424,8 +432,8 @@
         }
 
         .staff-avatar {
-            width: 120px;
-            height: 120px;
+            width: 140px;
+            height: 140px;
             margin: 0 auto 1.5rem;
             border-radius: 50%;
             background: var(--gradient-blue);
@@ -435,8 +443,15 @@
             font-size: 3rem;
             color: white;
             border: 4px solid var(--secondary-gray);
-            box-shadow: 0 0 20px rgba(0, 153, 255, 0.4);
+            box-shadow: 0 0 30px rgba(0, 153, 255, 0.4);
             overflow: hidden;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .staff-card:hover .staff-avatar {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(0, 153, 255, 0.6);
         }
 
         .staff-avatar img {
@@ -446,16 +461,35 @@
         }
 
         .staff-name {
-            font-size: 1.4rem;
-            font-weight: 700;
+            font-size: 1.6rem;
+            font-weight: 800;
             margin-bottom: 0.5rem;
             color: var(--text-light);
+            position: relative;
+            display: inline-block;
+        }
+
+        .staff-name::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gradient-blue);
+            transition: width 0.3s ease;
+        }
+
+        .staff-card:hover .staff-name::after {
+            width: 100%;
         }
 
         .staff-role {
             color: var(--swit-light-blue);
-            font-weight: 600;
-            font-size: 1rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .staff-info {
@@ -466,21 +500,24 @@
             color: var(--text-muted);
             line-height: 1.6;
             text-align: center;
+            font-size: 1.1rem;
         }
 
-        /* Crown Animation for Owner */
+        /* Crown Animation for Owners */
         .crown-fall {
             position: absolute;
             top: -50px;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: gold;
             opacity: 0;
-            animation: fallDown 2s linear infinite;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+            z-index: 10;
+            animation: fallDown 3s linear infinite;
         }
 
         @keyframes fallDown {
             0% {
-                transform: translateY(-50px) rotate(0deg);
+                transform: translateY(-50px) rotate(0deg) scale(0.5);
                 opacity: 0;
             }
             10% {
@@ -490,24 +527,26 @@
                 opacity: 1;
             }
             100% {
-                transform: translateY(300px) rotate(360deg);
+                transform: translateY(400px) rotate(360deg) scale(1.2);
                 opacity: 0;
             }
         }
 
-        /* Medal Animation for Co-Founder */
-        .medal-fall {
+        /* Shield Animation for Supervisors */
+        .shield-fall {
             position: absolute;
             top: -50px;
-            font-size: 1.2rem;
-            color: silver;
+            font-size: 1.5rem;
+            color: #4fc3f7;
             opacity: 0;
-            animation: medalFall 2s linear infinite;
+            text-shadow: 0 0 10px rgba(79, 195, 247, 0.8);
+            z-index: 10;
+            animation: shieldFall 2.5s linear infinite;
         }
 
-        @keyframes medalFall {
+        @keyframes shieldFall {
             0% {
-                transform: translateY(-50px) rotate(0deg);
+                transform: translateY(-50px) rotate(0deg) scale(0.5);
                 opacity: 0;
             }
             10% {
@@ -517,7 +556,36 @@
                 opacity: 1;
             }
             100% {
-                transform: translateY(300px) rotate(360deg);
+                transform: translateY(350px) rotate(360deg) scale(1.1);
+                opacity: 0;
+            }
+        }
+
+        /* Star Animation for Administrator */
+        .star-fall {
+            position: absolute;
+            top: -50px;
+            font-size: 1.5rem;
+            color: #ffeb3b;
+            opacity: 0;
+            text-shadow: 0 0 10px rgba(255, 235, 59, 0.8);
+            z-index: 10;
+            animation: starFall 2s linear infinite;
+        }
+
+        @keyframes starFall {
+            0% {
+                transform: translateY(-50px) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(300px) rotate(360deg) scale(1);
                 opacity: 0;
             }
         }
@@ -611,6 +679,11 @@
             display: flex;
             align-items: center;
             gap: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .rules-list li:hover {
+            color: var(--text-light);
         }
 
         .rules-list li:last-child {
@@ -621,6 +694,26 @@
             content: '▸';
             color: var(--swit-light-blue);
             font-weight: bold;
+        }
+
+        .edit-rules-btn {
+            background: var(--gradient-blue);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .edit-rules-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 153, 255, 0.4);
         }
 
         /* Footer */
@@ -744,6 +837,7 @@
     <!-- Navigation -->
     <nav class="navbar liquid-glass">
         <div class="logo-container">
+             <img src="https://imgur.com/VLvJWhG" alt="Swit Logo" class="custom-logo">
             <div class="logo-img">SW</div>
             <div class="logo-text">Swit</div>
         </div>
@@ -751,7 +845,7 @@
             <a href="#" class="nav-link active" data-page="home">Home</a>
             <a href="#" class="nav-link" data-page="rules">Rules</a>
             <a href="#" class="nav-link" data-page="staff">Staff</a>
-            <a href="https://discord.gg/your-server" class="discord-btn" target="_blank">
+            <a href="https://discord.gg/swtirp" class="discord-btn" target="_blank">
                 <i class="fab fa-discord"></i>
             </a>
         </div>
@@ -765,6 +859,7 @@
             <section class="hero">
                 <div class="forum-logo">
                     <div class="logo-circle">
+                        <!-- Replace with your custom logo -->
                         <i class="fas fa-gamepad"></i>
                     </div>
                 </div>
@@ -822,33 +917,33 @@
             <section class="staff">
                 <h2 class="section-title animate-on-scroll">Meet Our Team</h2>
                 <div class="staff-grid">
-                    <!-- Owner -->
-                    <div class="staff-card animate-on-scroll liquid-glass" id="owner-card">
+                    <!-- Owner 1 -->
+                    <div class="staff-card animate-on-scroll liquid-glass" data-role="owner">
                         <div class="staff-header">
                             <div class="staff-avatar">
-                                <!-- Replace with your custom photo -->
-                                <i class="fas fa-crown"></i>
+                                <!-- Replace with custom photo -->
+                                <img src="https://imgur.com/a/hINSB0M" alt="Paradox">
                             </div>
-                            <h3 class="staff-name">Alex Johnson</h3>
+                            <h3 class="staff-name">Paradox</h3>
                             <div class="staff-role">Server Owner</div>
                         </div>
                         <div class="staff-info">
-                            <p>Leading the community with vision and dedication since 2020.</p>
+                            <p>Leading the community with vision and dedication since 2020. Responsible for overall server management and strategic direction.</p>
                         </div>
                     </div>
 
-                    <!-- Co-Founder -->
-                    <div class="staff-card animate-on-scroll liquid-glass" id="cofounder-card">
+                    <!-- Owner 2 -->
+                    <div class="staff-card animate-on-scroll liquid-glass" data-role="owner">
                         <div class="staff-header">
                             <div class="staff-avatar">
-                                <!-- Replace with your custom photo -->
-                                <i class="fas fa-medal"></i>
+                                <!-- Replace with custom photo -->
+                                <img src="https://imgur.com/QApDPAG" alt="obsedat">
                             </div>
-                            <h3 class="staff-name">Sarah Miller</h3>
-                            <div class="staff-role">Co-Founder</div>
+                            <h3 class="staff-name">obsedat</h3>
+                            <div class="staff-role">Server Owner</div>
                         </div>
                         <div class="staff-info">
-                            <p>Ensuring fair play and maintaining server quality standards.</p>
+                            <p>Co-owner focused on community development and technical infrastructure. Ensures smooth server operations and player experience.</p>
                         </div>
                     </div>
                 </div>
@@ -893,51 +988,58 @@
                     <!-- General Rules -->
                     <div class="rules-category animate-on-scroll liquid-glass">
                         <h3><i class="fas fa-globe"></i> General Rules</h3>
-                        <ul class="rules-list">
+                        <ul class="rules-list" contenteditable="true">
                             <li>Respect all players and staff members</li>
                             <li>No harassment, hate speech, or discrimination</li>
                             <li>English only in global chat</li>
                             <li>No advertising other servers</li>
-                            <li>Follow staff instructions</li>
+                            <li>Follow staff instructions immediately</li>
+                            <li>No exploiting or bug abuse</li>
                         </ul>
                     </div>
 
                     <!-- Roleplay Rules -->
                     <div class="rules-category animate-on-scroll liquid-glass">
                         <h3><i class="fas fa-theater-masks"></i> Roleplay Rules</h3>
-                        <ul class="rules-list">
+                        <ul class="rules-list" contenteditable="true">
                             <li>Stay in character while roleplaying</li>
                             <li>No metagaming (using OOC information)</li>
                             <li>No powergaming (forcing actions)</li>
                             <li>FearRP - value your character's life</li>
-                            <li>New Life Rule applies</li>
+                            <li>New Life Rule applies after death</li>
+                            <li>Proper character development required</li>
                         </ul>
                     </div>
 
                     <!-- Gameplay Rules -->
                     <div class="rules-category animate-on-scroll liquid-glass">
                         <h3><i class="fas fa-gamepad"></i> Gameplay Rules</h3>
-                        <ul class="rules-list">
+                        <ul class="rules-list" contenteditable="true">
                             <li>No cheating, exploiting, or hacking</li>
                             <li>No random deathmatching (RDM)</li>
                             <li>No vehicle deathmatching (VDM)</li>
-                            <li>No combat logging</li>
-                            <li>Follow server mechanics</li>
+                            <li>No combat logging during situations</li>
+                            <li>Follow all server mechanics properly</li>
+                            <li>No spawn killing or camping</li>
                         </ul>
                     </div>
 
                     <!-- Voice Chat Rules -->
                     <div class="rules-category animate-on-scroll liquid-glass">
                         <h3><i class="fas fa-microphone"></i> Voice Chat</h3>
-                        <ul class="rules-list">
+                        <ul class="rules-list" contenteditable="true">
                             <li>Use push-to-talk in crowded areas</li>
                             <li>No background noise or music</li>
                             <li>Keep voice chat clear and audible</li>
                             <li>Respect others in voice channels</li>
-                            <li>No screaming or loud volumes</li>
+                            <li>No screaming or excessively loud volumes</li>
+                            <li>Proper microphone quality required</li>
                         </ul>
                     </div>
                 </div>
+                <button class="edit-rules-btn" onclick="toggleEditRules()">
+                    <i class="fas fa-edit"></i> Edit Rules
+                </button>
             </section>
         </div>
 
@@ -946,63 +1048,73 @@
             <section class="staff">
                 <h2 class="section-title">Our Staff Team</h2>
                 <div class="staff-grid">
-                    <!-- Owner -->
-                    <div class="staff-card animate-on-scroll liquid-glass" id="owner-card-full">
+                    <!-- Owner 1 -->
+                    <div class="staff-card animate-on-scroll liquid-glass" data-role="owner">
                         <div class="staff-header">
                             <div class="staff-avatar">
-                                <!-- Replace with your custom photo -->
-                                <i class="fas fa-crown"></i>
+                                <img src="https://imgur.com/44OlsnP" alt="Paradox">
                             </div>
-                            <h3 class="staff-name">Alex Johnson</h3>
+                            <h3 class="staff-name">Paradox</h3>
                             <div class="staff-role">Server Owner</div>
                         </div>
                         <div class="staff-info">
-                            <p>Responsible for overall server management and development. Contact for serious inquiries and partnerships.</p>
+                            <p>Founder and visionary behind Swit. Responsible for overall server management, development direction, and community growth since 2020.</p>
                         </div>
                     </div>
 
-                    <!-- Co-Founder -->
-                    <div class="staff-card animate-on-scroll liquid-glass" id="cofounder-card-full">
+                    <!-- Owner 2 -->
+                    <div class="staff-card animate-on-scroll liquid-glass" data-role="owner">
                         <div class="staff-header">
                             <div class="staff-avatar">
-                                <!-- Replace with your custom photo -->
-                                <i class="fas fa-medal"></i>
+                                <img src="https://imgur.com/QApDPAG" alt="obsedat">
                             </div>
-                            <h3 class="staff-name">Sarah Miller</h3>
-                            <div class="staff-role">Co-Founder</div>
+                            <h3 class="staff-name">obsedat</h3>
+                            <div class="staff-role">Server Owner</div>
                         </div>
                         <div class="staff-info">
-                            <p>Manages the admin team and handles complex player issues. Ensures server rules are properly enforced.</p>
+                            <p>Co-owner specializing in technical infrastructure and community development. Ensures optimal server performance and player satisfaction.</p>
                         </div>
                     </div>
 
-                    <!-- Senior Moderator -->
-                    <div class="staff-card animate-on-scroll liquid-glass">
+                    <!-- Supervisor 1 -->
+                    <div class="staff-card animate-on-scroll liquid-glass" data-role="supervisor">
                         <div class="staff-header">
                             <div class="staff-avatar">
-                                <!-- Replace with your custom photo -->
-                                <i class="fas fa-user-shield"></i>
+                                <img src="https://imgur.com/qeV3hnl" alt="9yuv">
                             </div>
-                            <h3 class="staff-name">Mike Rodriguez</h3>
-                            <div class="staff-role">Senior Moderator</div>
+                            <h3 class="staff-name">9yuv</h3>
+                            <div class="staff-role">Supervisor</div>
                         </div>
                         <div class="staff-info">
-                            <p>Focuses on player support and rule enforcement. Handles reports and maintains a positive community environment.</p>
+                            <p>Oversees day-to-day server operations and staff coordination. Ensures consistent rule enforcement and high-quality roleplay standards.</p>
                         </div>
                     </div>
 
-                    <!-- Developer -->
-                    <div class="staff-card animate-on-scroll liquid-glass">
+                    <!-- Supervisor 2 -->
+                    <div class="staff-card animate-on-scroll liquid-glass" data-role="supervisor">
                         <div class="staff-header">
                             <div class="staff-avatar">
-                                <!-- Replace with your custom photo -->
-                                <i class="fas fa-code"></i>
+                                <img src="https://imgur.com/9wpvy9T" alt="sase">
                             </div>
-                            <h3 class="staff-name">David Chen</h3>
-                            <div class="staff-role">Developer</div>
+                            <h3 class="staff-name">sase</h3>
+                            <div class="staff-role">Supervisor</div>
                         </div>
                         <div class="staff-info">
-                            <p>Creates custom scripts and maintains server infrastructure. Works on new features and bug fixes.</p>
+                            <p>Manages community events and player relations. Focuses on creating engaging experiences and resolving complex player issues.</p>
+                        </div>
+                    </div>
+
+                    <!-- Administrator -->
+                    <div class="staff-card animate-on-scroll liquid-glass" data-role="admin">
+                        <div class="staff-header">
+                            <div class="staff-avatar">
+                                <img src="https://imgur.com/9wpvy9T" alt="RafaelDream2">
+                            </div>
+                            <h3 class="staff-name">RafaelDream2</h3>
+                            <div class="staff-role">Administrator</div>
+                        </div>
+                        <div class="staff-info">
+                            <p>Handles technical administration and player support. Implements server features and ensures smooth gameplay experience for all members.</p>
                         </div>
                     </div>
                 </div>
@@ -1082,16 +1194,16 @@
                 observer.observe(element);
             });
 
-            // Crown animation for owner card
-            const ownerCards = document.querySelectorAll('#owner-card, #owner-card-full');
+            // Crown animation for owner cards
+            const ownerCards = document.querySelectorAll('[data-role="owner"]');
             ownerCards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
-                    for (let i = 0; i < 15; i++) {
+                    for (let i = 0; i < 12; i++) {
                         const crown = document.createElement('div');
                         crown.className = 'crown-fall';
                         crown.innerHTML = '👑';
                         crown.style.left = Math.random() * 100 + '%';
-                        crown.style.animationDelay = Math.random() * 2 + 's';
+                        crown.style.animationDelay = Math.random() * 3 + 's';
                         this.appendChild(crown);
                     }
                 });
@@ -1102,47 +1214,73 @@
                 });
             });
 
-            // Medal animation for co-founder card
-            const cofounderCards = document.querySelectorAll('#cofounder-card, #cofounder-card-full');
-            cofounderCards.forEach(card => {
+            // Shield animation for supervisor cards
+            const supervisorCards = document.querySelectorAll('[data-role="supervisor"]');
+            supervisorCards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
-                    for (let i = 0; i < 12; i++) {
-                        const medal = document.createElement('div');
-                        medal.className = 'medal-fall';
-                        medal.innerHTML = '🏅';
-                        medal.style.left = Math.random() * 100 + '%';
-                        medal.style.animationDelay = Math.random() * 2 + 's';
-                        this.appendChild(medal);
+                    for (let i = 0; i < 10; i++) {
+                        const shield = document.createElement('div');
+                        shield.className = 'shield-fall';
+                        shield.innerHTML = '🛡️';
+                        shield.style.left = Math.random() * 100 + '%';
+                        shield.style.animationDelay = Math.random() * 2.5 + 's';
+                        this.appendChild(shield);
                     }
                 });
 
                 card.addEventListener('mouseleave', function() {
-                    const medals = this.querySelectorAll('.medal-fall');
-                    medals.forEach(medal => medal.remove());
+                    const shields = this.querySelectorAll('.shield-fall');
+                    shields.forEach(shield => shield.remove());
                 });
             });
 
-            // Parallax effect for staff cards
-            const staffCards = document.querySelectorAll('.staff-card');
-            staffCards.forEach(card => {
-                card.addEventListener('mousemove', function(e) {
-                    const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-                    const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-                    this.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            // Star animation for admin card
+            const adminCards = document.querySelectorAll('[data-role="admin"]');
+            adminCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    for (let i = 0; i < 8; i++) {
+                        const star = document.createElement('div');
+                        star.className = 'star-fall';
+                        star.innerHTML = '⭐';
+                        star.style.left = Math.random() * 100 + '%';
+                        star.style.animationDelay = Math.random() * 2 + 's';
+                        this.appendChild(star);
+                    }
                 });
 
                 card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'rotateY(0deg) rotateX(0deg)';
+                    const stars = this.querySelectorAll('.star-fall');
+                    stars.forEach(star => star.remove());
                 });
             });
         });
 
-        // Instructions for custom photos
-        console.log('To add custom staff photos:');
-        console.log('1. Replace the <i class="fas fa-crown"></i> in staff-avatar div with:');
-        console.log('   <img src="path/to/your/photo.jpg" alt="Staff Name">');
-        console.log('2. Make sure images are square (1:1 ratio) for best results');
-        console.log('3. Recommended size: 200x200 pixels or larger');
+        // Rules editing function
+        function toggleEditRules() {
+            const rulesLists = document.querySelectorAll('.rules-list');
+            const editBtn = document.querySelector('.edit-rules-btn');
+            
+            rulesLists.forEach(list => {
+                if (list.contentEditable === 'true') {
+                    list.contentEditable = 'false';
+                    list.style.backgroundColor = 'transparent';
+                    editBtn.innerHTML = '<i class="fas fa-edit"></i> Edit Rules';
+                    editBtn.style.backgroundColor = 'var(--gradient-blue)';
+                } else {
+                    list.contentEditable = 'true';
+                    list.style.backgroundColor = 'rgba(0, 153, 255, 0.1)';
+                    editBtn.innerHTML = '<i class="fas fa-save"></i> Save Rules';
+                    editBtn.style.backgroundColor = '#4caf50';
+                }
+            });
+        }
+
+        // Instructions for custom content
+        console.log('To customize your website:');
+        console.log('1. Replace logo images with your custom logo');
+        console.log('2. Replace staff photos with your team photos');
+        console.log('3. Update Discord link with your server invite');
+        console.log('4. Edit rules directly on the rules page');
     </script>
 </body>
 </html>
