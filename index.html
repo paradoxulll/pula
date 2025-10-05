@@ -694,6 +694,32 @@
     display: block;
 }
 
+        .rules-editor {
+    min-height: 150px;
+    padding: 1rem;
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.03);
+    overflow-y: auto;
+    color: var(--text-light);
+}
+.rules-editor:focus {
+    outline: none;
+}
+.editor-toolbar button {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-light);
+    padding: 0.5rem 0.7rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.editor-toolbar button:hover {
+    background: var(--swit-light-blue);
+    color: black;
+}
+
 
         /* Footer */
         footer {
@@ -960,47 +986,42 @@
             </section>
         </div>
 
-        <!-- Rules Page -->
+       <!-- Rules Page -->
 <div class="page-content" id="rules-page">
     <section class="rules">
         <h2 class="section-title">Server Rules</h2>
 
-        <!-- Tabs -->
-        <div class="rules-tabs">
-            <button class="tab-btn active" data-tab="general">Regulament General</button>
-            <button class="tab-btn" data-tab="discord">Regulament Discord</button>
-            <button class="tab-btn" data-tab="roleplay">Regulament Roleplay</button>
+        <!-- Toolbar -->
+        <div class="editor-toolbar liquid-glass" style="padding:10px; margin-bottom:1rem; display:flex; gap:0.5rem;">
+            <button onclick="formatText('bold')" title="Bold"><i class="fas fa-bold"></i></button>
+            <button onclick="formatText('italic')" title="Italic"><i class="fas fa-italic"></i></button>
+            <button onclick="formatText('underline')" title="Underline"><i class="fas fa-underline"></i></button>
+            <button onclick="formatText('hiliteColor','yellow')" title="Highlight"><i class="fas fa-highlighter"></i></button>
         </div>
 
-        <!-- Tab Contents -->
-        <div class="tab-content-container">
-            <div class="tab-content active" id="general">
-                <ul class="rules-list" contenteditable="true">
-                    <li>Respect all players and staff members</li>
-                    <li>No harassment, hate speech, or discrimination</li>
-                    <li>English only in global chat</li>
-                    <li>No advertising other servers</li>
-                    <li>Follow staff instructions immediately</li>
-                    <li>No exploiting or bug abuse</li>
-                </ul>
+        <div class="rules-grid">
+            <!-- General Rules -->
+            <div class="rules-category animate-on-scroll liquid-glass">
+                <h3><i class="fas fa-globe"></i> General Rules</h3>
+                <div class="rules-editor" id="general-rules"></div>
             </div>
-            <div class="tab-content" id="discord">
-                <ul class="rules-list" contenteditable="true">
-                    <li>No spamming or excessive mentions</li>
-                    <li>Respect all voice and text channels</li>
-                    <li>Keep content appropriate for community</li>
-                    <li>Follow Discord server guidelines</li>
-                </ul>
+
+            <!-- Roleplay Rules -->
+            <div class="rules-category animate-on-scroll liquid-glass">
+                <h3><i class="fas fa-theater-masks"></i> Roleplay Rules</h3>
+                <div class="rules-editor" id="roleplay-rules"></div>
             </div>
-            <div class="tab-content" id="roleplay">
-                <ul class="rules-list" contenteditable="true">
-                    <li>Stay in character while roleplaying</li>
-                    <li>No metagaming (using OOC information)</li>
-                    <li>No powergaming (forcing actions)</li>
-                    <li>FearRP - value your character's life</li>
-                    <li>New Life Rule applies after death</li>
-                    <li>Proper character development required</li>
-                </ul>
+
+            <!-- Gameplay Rules -->
+            <div class="rules-category animate-on-scroll liquid-glass">
+                <h3><i class="fas fa-gamepad"></i> Gameplay Rules</h3>
+                <div class="rules-editor" id="gameplay-rules"></div>
+            </div>
+
+            <!-- Voice Chat Rules -->
+            <div class="rules-category animate-on-scroll liquid-glass">
+                <h3><i class="fas fa-microphone"></i> Voice Chat</h3>
+                <div class="rules-editor" id="voice-rules"></div>
             </div>
         </div>
 
@@ -1234,26 +1255,44 @@
 
         // Rules editing function
         // Tab functionality
-const tabButtons = document.querySelectorAll('.tab-btn');
-const tabContents = document.querySelectorAll('.tab-content');
+function toggleEditRules() {
+    const editors = document.querySelectorAll('.rules-editor');
+    const editBtn = document.querySelector('.edit-rules-btn');
 
-tabButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        const target = btn.getAttribute('data-tab');
+    editors.forEach(editor => {
+        if (editor.contentEditable === 'true') {
+            // Save to localStorage
+            localStorage.setItem(editor.id, editor.innerHTML);
+            editor.contentEditable = 'false';
+            editBtn.innerHTML = '<i class="fas fa-edit"></i> Edit Rules';
+            editBtn.style.backgroundColor = 'var(--gradient-blue)';
+        } else {
+            editor.contentEditable = 'true';
+            editor.focus();
+            editBtn.innerHTML = '<i class="fas fa-save"></i> Save Rules';
+            editBtn.style.backgroundColor = '#4caf50';
+        }
+    });
+}
 
-        // Schimbă tab-ul activ
-        tabButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        // Arată conținutul corespunzător
-        tabContents.forEach(tc => tc.classList.remove('active'));
-        document.getElementById(target).classList.add('active');
+// Load saved rules
+document.addEventListener('DOMContentLoaded', () => {
+    const editors = document.querySelectorAll('.rules-editor');
+    editors.forEach(editor => {
+        const saved = localStorage.getItem(editor.id);
+        if (saved) editor.innerHTML = saved;
     });
 });
+
+// Toolbar functions
+function formatText(command, value = null) {
+    document.execCommand(command, false, value);
+}
 
     </script>
 </body>
 </html>
+
 
 
 
