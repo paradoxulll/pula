@@ -39,7 +39,6 @@
             overflow-x: hidden;
         }
 
-        /* Liquid Glass Effect */
         .liquid-glass {
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
@@ -47,7 +46,6 @@
             box-shadow: var(--glass-shadow);
         }
 
-        /* Navigation */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -67,29 +65,6 @@
             display: flex;
             align-items: center;
             gap: 1rem;
-        }
-
-        .logo-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: white;
-            font-size: 1.2rem;
-            background: var(--gradient-blue);
-        }
-
-        .logo-text {
-            font-size: 2rem;
-            font-weight: 800;
-            background: var(--gradient-blue);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 30px rgba(0, 153, 255, 0.5);
         }
 
         .nav-links {
@@ -154,7 +129,6 @@
             box-shadow: 0 6px 20px rgba(0, 153, 255, 0.6);
         }
 
-        /* Main Content */
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -170,7 +144,6 @@
             display: block;
         }
 
-        /* Hero Section */
         .hero {
             text-align: center;
             padding: 6rem 2rem;
@@ -207,12 +180,6 @@
             justify-content: center;
             animation: float 6s ease-in-out infinite;
             box-shadow: none;
-        }
-
-        .logo-circle i {
-            font-size: 5rem;
-            color: white;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
         }
 
         .forum-title {
@@ -279,11 +246,6 @@
             transform: translateY(-3px);
         }
 
-        /* Features Section */
-        .features {
-            padding: 6rem 2rem;
-        }
-
         .section-title {
             font-size: 3.5rem;
             text-align: center;
@@ -305,6 +267,10 @@
             height: 4px;
             background: var(--gradient-blue);
             border-radius: 2px;
+        }
+
+        .features {
+            padding: 6rem 2rem;
         }
 
         .features-grid {
@@ -371,7 +337,6 @@
             line-height: 1.6;
         }
 
-        /* Staff Section */
         .staff {
             padding: 6rem 2rem;
         }
@@ -432,21 +397,21 @@
         }
 
         .staff-avatar {
-    width: 140px;
-    height: 140px;
-    margin: 0 auto 1.5rem;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    color: white;
-    border: 4px solid var(--secondary-gray);
-    box-shadow: 0 0 30px rgba(0, 153, 255, 0.4);
-    overflow: hidden;
-    position: relative;
-    transition: all 0.3s ease;
-}
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            border: 4px solid var(--secondary-gray);
+            box-shadow: 0 0 30px rgba(0, 153, 255, 0.4);
+            overflow: hidden;
+            position: relative;
+            transition: all 0.3s ease;
+        }
 
         .staff-card:hover .staff-avatar {
             transform: scale(1.1);
@@ -503,107 +468,6 @@
             font-size: 1.1rem;
         }
 
-        /* Staff Hover Gradients */
-        .staff-card[data-role="owner"]:hover {
-            background: linear-gradient(135deg, rgba(255, 0, 0, 0.15), rgba(255, 255, 255, 0.1));
-        }
-
-        .staff-card[data-role="supervisor"]:hover {
-            background: linear-gradient(135deg, rgba(255, 165, 0, 0.15), rgba(255, 255, 255, 0.1));
-        }
-
-        .staff-card[data-role="admin"]:hover {
-            background: linear-gradient(135deg, rgba(255, 255, 0, 0.15), rgba(255, 255, 255, 0.1));
-        }
-
-        /* Crown Animation for Owners */
-        .crown-fall {
-            position: absolute;
-            top: -50px;
-            font-size: 1.8rem;
-            color: gold;
-            opacity: 0;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
-            z-index: 10;
-            animation: fallDown 3s linear infinite;
-        }
-
-        @keyframes fallDown {
-            0% {
-                transform: translateY(-50px) rotate(0deg) scale(0.5);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(400px) rotate(360deg) scale(1.2);
-                opacity: 0;
-            }
-        }
-
-        /* Shield Animation for Supervisors */
-        .shield-fall {
-            position: absolute;
-            top: -50px;
-            font-size: 1.5rem;
-            color: #4fc3f7;
-            opacity: 0;
-            text-shadow: 0 0 10px rgba(79, 195, 247, 0.8);
-            z-index: 10;
-            animation: shieldFall 2.5s linear infinite;
-        }
-
-        @keyframes shieldFall {
-            0% {
-                transform: translateY(-50px) rotate(0deg) scale(0.5);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(350px) rotate(360deg) scale(1.1);
-                opacity: 0;
-            }
-        }
-
-        /* Star Animation for Administrator */
-        .star-fall {
-            position: absolute;
-            top: -50px;
-            font-size: 1.5rem;
-            color: #ffeb3b;
-            opacity: 0;
-            text-shadow: 0 0 10px rgba(255, 235, 59, 0.8);
-            z-index: 10;
-            animation: starFall 2s linear infinite;
-        }
-
-        @keyframes starFall {
-            0% {
-                transform: translateY(-50px) rotate(0deg) scale(0.5);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(300px) rotate(360deg) scale(1);
-                opacity: 0;
-            }
-        }
-
-        /* Story Section */
         .story {
             padding: 6rem 2rem;
         }
@@ -648,115 +512,185 @@
         }
 
         /* Modern Rules Section */
-        .rules-text {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: var(--text-light);
-}
-
-.rule-section {
-    margin-bottom: 2.5rem;
-    padding: 1.5rem;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 12px;
-    border-left: 4px solid var(--swit-blue);
-}
-
-.rule-section h4 {
-    color: var(--swit-light-blue);
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.rule-item {
-    margin-bottom: 0.8rem;
-    padding: 0.8rem;
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    border-left: 3px solid transparent;
-}
-
-.rule-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-left: 3px solid var(--swit-blue);
-    transform: translateX(5px);
-}
-
-.rule-item strong {
-    color: var(--swit-light-blue);
-}
-
-.criteria-box {
-    background: rgba(0, 153, 255, 0.1);
-    border: 1px solid var(--swit-blue);
-    border-radius: 10px;
-    padding: 1.5rem;
-    margin: 1rem 0;
-}
-
-.criteria-title {
-    font-weight: 700;
-    color: var(--swit-light-blue);
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-}
-
-.criteria-item {
-    margin-bottom: 0.5rem;
-    padding-left: 1rem;
-    position: relative;
-}
-
-.criteria-item:before {
-    content: "•";
-    color: var(--swit-blue);
-    font-weight: bold;
-    position: absolute;
-    left: 0;
-}
-
-.criteria-subitem {
-    margin-left: 1.5rem;
-    margin-bottom: 0.5rem;
-    padding-left: 1rem;
-    color: var(--text-muted);
-    font-style: italic;
-    position: relative;
-}
-
-.criteria-subitem:before {
-    content: "↳";
-    color: var(--swit-blue);
-    position: absolute;
-    left: 0;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .rule-section {
-        padding: 1rem;
-        margin-bottom: 2rem;
-    }
-    
-    .criteria-box {
-        padding: 1rem;
-    }
-    
-    .rule-section h4 {
-        font-size: 1.1rem;
-    }
-}
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .rules-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
         }
 
-        /* Footer */
+        .rules-tabs {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .rule-tab {
+            background: var(--glass-bg);
+            color: var(--text-light);
+            border: 1px solid var(--glass-border);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .rule-tab.active {
+            background: var(--gradient-blue);
+            color: white;
+            border-color: var(--swit-light-blue);
+            box-shadow: 0 6px 20px rgba(0, 153, 255, 0.4);
+        }
+
+        .rule-tab:hover {
+            transform: translateY(-3px);
+            border-color: var(--swit-light-blue);
+        }
+
+        .rules-content {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rules-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 153, 255, 0.08) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .rule-category {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .rule-category.active {
+            display: block;
+        }
+
+        .rule-category h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--swit-light-blue);
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .rule-category h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gradient-blue);
+            border-radius: 2px;
+        }
+
+        .rules-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-light);
+        }
+
+        .rule-section {
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border-left: 4px solid var(--swit-blue);
+        }
+
+        .rule-section h4 {
+            color: var(--swit-light-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .rule-item {
+            margin-bottom: 0.8rem;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .rule-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid var(--swit-blue);
+            transform: translateX(5px);
+        }
+
+        .rule-item strong {
+            color: var(--swit-light-blue);
+        }
+
+        .criteria-box {
+            background: rgba(0, 153, 255, 0.1);
+            border: 1px solid var(--swit-blue);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .criteria-title {
+            font-weight: 700;
+            color: var(--swit-light-blue);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .criteria-item {
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .criteria-item:before {
+            content: "•";
+            color: var(--swit-blue);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .criteria-subitem {
+            margin-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            color: var(--text-muted);
+            font-style: italic;
+            position: relative;
+        }
+
+        .criteria-subitem:before {
+            content: "↳";
+            color: var(--swit-blue);
+            position: absolute;
+            left: 0;
+        }
+
         footer {
             background: rgba(10, 14, 20, 0.95);
             padding: 4rem 2rem 2rem;
@@ -804,10 +738,14 @@
             font-size: 0.9rem;
         }
 
-        /* Animations */
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .animate-on-scroll {
@@ -821,7 +759,6 @@
             transform: translateY(0);
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
             .navbar {
                 padding: 1rem;
@@ -851,8 +788,7 @@
             }
 
             .features-grid,
-            .staff-grid,
-            .rules-grid {
+            .staff-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -878,6 +814,19 @@
             .rule-tab {
                 padding: 0.8rem 1.5rem;
                 font-size: 1rem;
+            }
+
+            .rule-section {
+                padding: 1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .criteria-box {
+                padding: 1rem;
+            }
+            
+            .rule-section h4 {
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -1031,367 +980,367 @@
         </div>
 
         <!-- Rules Page -->
-<div class="page-content" id="rules-page">
-    <section class="rules">
-        <h2 class="section-title">Regulile Serverului</h2>
-        <div class="rules-container">
-            <div class="rules-tabs">
-                <div class="rule-tab active" data-category="fivem">
-                    <i class="fas fa-gamepad"></i> Reguli FiveM
-                </div>
-                <div class="rule-tab" data-category="discord">
-                    <i class="fab fa-discord"></i> Reguli Discord
-                </div>
-                <div class="rule-tab" data-category="staff">
-                    <i class="fas fa-users-cog"></i> Reguli Staff
-                </div>
-            </div>
-            
-            <div class="rules-content liquid-glass">
-                <!-- FiveM Rules -->
-                <div class="rule-category active" id="fivem-rules">
-                    <h3>Reguli Server FiveM</h3>
-                    <div class="rules-text">
-                        <div class="rule-section">
-                            <h4><i class="fas fa-ban"></i> Reguli Generale</h4>
-                            <div class="rule-item">
-                                <strong>Metagaming</strong> - Folosirea informațiilor OOC în scopuri IC
-                            </div>
-                            <div class="rule-item">
-                                <strong>Powergaming</strong> - Roleplay supranatural sau imposibil în viața reală
-                            </div>
-                            <div class="rule-item">
-                                <strong>No Fear</strong> - Viața jucătorului în pericol unde trebuie să aibă frică
-                            </div>
-                            <div class="rule-item">
-                                <strong>Mixing</strong> - Folosirea informațiilor IC în OOC
+        <div class="page-content" id="rules-page">
+            <section class="rules">
+                <h2 class="section-title">Regulile Serverului</h2>
+                <div class="rules-container">
+                    <div class="rules-tabs">
+                        <div class="rule-tab active" data-category="fivem">
+                            <i class="fas fa-gamepad"></i> Reguli FiveM
+                        </div>
+                        <div class="rule-tab" data-category="discord">
+                            <i class="fab fa-discord"></i> Reguli Discord
+                        </div>
+                        <div class="rule-tab" data-category="staff">
+                            <i class="fas fa-users-cog"></i> Reguli Staff
+                        </div>
+                    </div>
+                    
+                    <div class="rules-content liquid-glass">
+                        <!-- FiveM Rules -->
+                        <div class="rule-category active" id="fivem-rules">
+                            <h3>Reguli Server FiveM</h3>
+                            <div class="rules-text">
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-ban"></i> Reguli Generale</h4>
+                                    <div class="rule-item">
+                                        <strong>Metagaming</strong> - Folosirea informațiilor OOC în scopuri IC
+                                    </div>
+                                    <div class="rule-item">
+                                        <strong>Powergaming</strong> - Roleplay supranatural sau imposibil în viața reală
+                                    </div>
+                                    <div class="rule-item">
+                                        <strong>No Fear</strong> - Viața jucătorului în pericol unde trebuie să aibă frică
+                                    </div>
+                                    <div class="rule-item">
+                                        <strong>Mixing</strong> - Folosirea informațiilor IC în OOC
+                                    </div>
+                                </div>
+
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-skull-crossbones"></i> Deathmatch</h4>
+                                    <div class="rule-item">
+                                        <strong>RDM (Random Deathmatch)</strong> - Omorârea unui player fără motiv roleplay
+                                    </div>
+                                    <div class="rule-item">
+                                        <strong>VDM (Vehicle Deathmatch)</strong> - Omorârea cu vehiculul fără motiv roleplay
+                                    </div>
+                                    <div class="rule-item">
+                                        <strong>Revenge Kill</strong> - Întorcarea să te răzbuni după ce ai murit IC
+                                    </div>
+                                    <div class="rule-item">
+                                        <strong>Drop & Kill</strong> - Obligarea unui player să arunce iteme + omorâre
+                                    </div>
+                                    <div class="rule-item">
+                                        <strong>Rob & Kill / Kill & Rob</strong> - Jefuire + omorâre sau invers
+                                    </div>
+                                </div>
+
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-shield-alt"></i> Interacțiuni cu Poliția</h4>
+                                    <div class="rule-item">
+                                        <strong>Cop Fear</strong> - Nerolarea fricii față de poliție
+                                    </div>
+                                    <div class="rule-item">
+                                        <strong>Cop Bait</strong> - Instigarea poliției la roleplay nedorit
+                                    </div>
+                                </div>
+
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-swimmer"></i> Mișcări și Acțiuni</h4>
+                                    <div class="rule-item">
+                                        <strong>Olympic Swim</strong> - Înot continuu fără pauză (max 2 minute + 1 minut pauză)
+                                    </div>
+                                    <div class="rule-item">
+                                        <strong>Chicken Run</strong> - Alergare în zig-zag (permis o singură dată)
+                                    </div>
+                                    <div class="rule-item">
+                                        <strong>Ninja Jack</strong> - Furt vehicul fără /me
+                                    </div>
+                                    <div class="rule-item">
+                                        <strong>Big Weapon Roll</strong> - Miscarea Roll cu armă de calibru mare
+                                    </div>
+                                    <div class="rule-item">
+                                        <strong>Combat Logging</strong> - Delogare în timpul interacțiunii PvP
+                                    </div>
+                                </div>
+
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-user"></i> Caracter și Identitate</h4>
+                                    <div class="rule-item">
+                                        <strong>Numele Caracterului</strong> - Creativ și inventiv, fără nume de celebrități
+                                    </div>
+                                    <div class="rule-item">
+                                        <strong>Vârsta Caracterului</strong> - Obligația de a face roleplay de vârsta introdusă
+                                    </div>
+                                    <div class="rule-item">
+                                        <strong>Naționalitatea Caracterului</strong> - Dacă pretenzi că ești asiatic, ai caracteristicile și accentul
+                                    </div>
+                                    <div class="rule-item">
+                                        <strong>Valoarea Vieții</strong> - Fără acțiuni absurde sau inconștiente
+                                    </div>
+                                </div>
+
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-store"></i> Business și Economie</h4>
+                                    <div class="rule-item">
+                                        <strong>Business</strong> - Obligația de a juca activ business-ul deținut
+                                    </div>
+                                    <div class="rule-item">
+                                        <strong>Tranzacții OOC în IC</strong> - Interzis (averi, etc.)
+                                    </div>
+                                </div>
+
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-money-bill-wave"></i> Scam și Inșelăciune</h4>
+                                    <div class="criteria-box">
+                                        <div class="criteria-title">Scamul este permis DOAR în următoarele condiții:</div>
+                                        <div class="criteria-item">• Suma bunurilor nu depășește 20,000$</div>
+                                        <div class="criteria-item">• Vinzi un obiect stricat ca fiind bun</div>
+                                        <div class="criteria-subitem">↳ Permis doar pentru: Arme Albe, Iteme de Job, Vehicule sub 20,000$</div>
+                                    </div>
+                                </div>
+
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-robot"></i> Macro și Automatizare</h4>
+                                    <div class="criteria-box">
+                                        <div class="criteria-title">Macro-ul este permis DOAR dacă:</div>
+                                        <div class="criteria-item">• Ești la PC când macro-ul rulează</div>
+                                        <div class="criteria-item">• Macro-ul nu dăunează comunității</div>
+                                    </div>
+                                </div>
+
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-people-robbery"></i> Jefuire</h4>
+                                    <div class="criteria-box">
+                                        <div class="criteria-title">Reguli de Jefuire:</div>
+                                        <div class="criteria-item">• Aceeași persoană poate fi jefuită din nou după 3 ore</div>
+                                        <div class="criteria-item">• Interzis să jefuiești obiecte de job</div>
+                                        <div class="criteria-item">• Maxim 10,000$ Cash de pe o persoană</div>
+                                        <div class="criteria-item">• Interzis să jefuiești: mâncare, telefon, apă</div>
+                                        <div class="criteria-item">• Arma "Navy Revolver" - doar să ceri să o arunce</div>
+                                        <div class="criteria-item">• Jefuirea sub 125 ore este interzisă</div>
+                                        <div class="criteria-item">• Ore de jefuire: Ziua 09:00-12:00, Seara 18:00-05:00</div>
+                                        <div class="criteria-item">• Persoanele cu sub 30 de ore nu pot fi jefuite</div>
+                                    </div>
+                                </div>
+
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-car-burst"></i> Drive By</h4>
+                                    <div class="criteria-box">
+                                        <div class="criteria-title">Drive By este interzis când:</div>
+                                        <div class="criteria-item">• Mașina nu încetinește când trage</div>
+                                        <div class="criteria-item">• Asasinezi ținta în zonă publică fără să fii mascat</div>
+                                    </div>
+                                </div>
+
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-users"></i> Comportament</h4>
+                                    <div class="rule-item">
+                                        <strong>Troll</strong> - Acțiuni care deranjează sau strică experiența de joc
+                                    </div>
+                                    <div class="rule-item">
+                                        <strong>Bombardier</strong> - Comportament agresiv și deranjant
+                                    </div>
+                                    <div class="rule-item">
+                                        <strong>Injurii Limitare</strong> - Permise limitat, excepții: roleplay trădător, injurii în absența playerului
+                                    </div>
+                                </div>
+
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-female"></i> Comportament cu Fetele</h4>
+                                    <div class="criteria-box">
+                                        <div class="criteria-title">Interzis:</div>
+                                        <div class="criteria-item">• Să pui fata într-o postură jenantă</div>
+                                        <div class="criteria-item">• Să o faci să se simtă deranjată</div>
+                                        <div class="criteria-item">• Hărțuirea fetelor din comunitate</div>
+                                        <div class="criteria-item">• Discriminare sau favoritism pe bază de sex</div>
+                                    </div>
+                                </div>
+
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-users-between-lines"></i> Fake Faction</h4>
+                                    <div class="criteria-box">
+                                        <div class="criteria-title">Permis DOAR în cazul:</div>
+                                        <div class="criteria-item">• Pretinzi că faci parte dintr-o facțiune pentru un roleplay specific, nu definitiv</div>
+                                    </div>
+                                </div>
+
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-bug"></i> Alte Reguli</h4>
+                                    <div class="rule-item">
+                                        <strong>Bug Abuse</strong> - Folosirea bug-urilor pentru avantaj
+                                    </div>
+                                    <div class="rule-item">
+                                        <strong>Ban Evade</strong> - Folosirea altui cont când ești banat
+                                    </div>
+                                    <div class="rule-item">
+                                        <strong>Reclama</strong> - Interzisă în orice formă
+                                    </div>
+                                    <div class="rule-item">
+                                        <strong>Tatuaje</strong> - Pe față nu trebuie să acopere sau să facă dificilă recunoașterea
+                                    </div>
+                                    <div class="rule-item">
+                                        <strong>Character Kill</strong> - Resetare caracter, viață nouă
+                                    </div>
+                                    <div class="rule-item">
+                                        <strong>Player Kill</strong> - Uitarea informațiilor după moarte în roleplay
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        
+                        <!-- Discord Rules -->
+                        <div class="rule-category" id="discord-rules">
+                            <h3>Reguli Comunitate Discord</h3>
+                            <div class="rules-text">
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-handshake"></i> Respect și Bună Cuviință</h4>
+                                    <div class="rule-item">
+                                        Respectă toți membrii, indiferent de opinii sau preferințe
+                                    </div>
+                                    <div class="rule-item">
+                                        Nu sunt tolerate insultele, jignirile, bullying-ul sau discriminarea
+                                    </div>
+                                    <div class="rule-item">
+                                        Conflictele personale se rezolvă în privat, nu pe server
+                                    </div>
+                                </div>
 
-                        <div class="rule-section">
-                            <h4><i class="fas fa-skull-crossbones"></i> Deathmatch</h4>
-                            <div class="rule-item">
-                                <strong>RDM (Random Deathmatch)</strong> - Omorârea unui player fără motiv roleplay
-                            </div>
-                            <div class="rule-item">
-                                <strong>VDM (Vehicle Deathmatch)</strong> - Omorârea cu vehiculul fără motiv roleplay
-                            </div>
-                            <div class="rule-item">
-                                <strong>Revenge Kill</strong> - Întorcarea să te răzbuni după ce ai murit IC
-                            </div>
-                            <div class="rule-item">
-                                <strong>Drop & Kill</strong> - Obligarea unui player să arunce iteme + omorâre
-                            </div>
-                            <div class="rule-item">
-                                <strong>Rob & Kill / Kill & Rob</strong> - Jefuire + omorâre sau invers
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-comment-slash"></i> Conținut și Limbaj</h4>
+                                    <div class="rule-item">
+                                        Evită limbajul vulgar excesiv și conținutul nepotrivit
+                                    </div>
+                                    <div class="rule-item">
+                                        Postarea de materiale NSFW, pornografie sau gore este interzisă
+                                    </div>
+                                    <div class="rule-item">
+                                        Glumele pe subiecte sensibile nu sunt acceptate
+                                    </div>
+                                </div>
+
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-bullhorn"></i> Spam și Activitate</h4>
+                                    <div class="rule-item">
+                                        Nu face spam sau flood în chat sau voice
+                                    </div>
+                                    <div class="rule-item">
+                                        Evită mesaje repetitive, emoji spam sau pinguri excesive
+                                    </div>
+                                    <div class="rule-item">
+                                        Comenzile bot-ului trebuie folosite responsabil
+                                    </div>
+                                    <div class="rule-item">
+                                        Muzica doar în canalele dedicate
+                                    </div>
+                                </div>
+
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-shield-alt"></i> Securitate și Confidențialitate</h4>
+                                    <div class="rule-item">
+                                        Reclamele la alte servere nu sunt permise fără acordul staff-ului
+                                    </div>
+                                    <div class="rule-item">
+                                        Linkurile externe trebuie să fie sigure și fără conținut malițios
+                                    </div>
+                                    <div class="rule-item">
+                                        Conturile multiple pentru avantaje sunt interzise
+                                    </div>
+                                    <div class="rule-item">
+                                        Datele personale nu trebuie împărtășite
+                                    </div>
+                                </div>
+
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-hashtag"></i> Organizare și Canale</h4>
+                                    <div class="rule-item">
+                                        Folosește fiecare canal pentru scopul său
+                                    </div>
+                                    <div class="rule-item">
+                                        Respectă descrierea fiecărui canal
+                                    </div>
+                                </div>
+
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-gavel"></i> Staff și Decizii</h4>
+                                    <div class="rule-item">
+                                        Respectă deciziile staff-ului
+                                    </div>
+                                    <div class="rule-item">
+                                        În caz de probleme, deschide un ticket
+                                    </div>
+                                    <div class="rule-item">
+                                        Contactează staff-ul în mod respectuos
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        
+                        <!-- Staff Rules -->
+                        <div class="rule-category" id="staff-rules">
+                            <h3>Ghiduri pentru Echipa Staff</h3>
+                            <div class="rules-text">
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-user-tie"></i> Ce înseamnă să fii Staff</h4>
+                                    <div class="rule-item">
+                                        Persoană cu responsabilitate în plus pentru server
+                                    </div>
+                                    <div class="rule-item">
+                                        Ajută la menținerea comunității ca loc plăcut pentru toți
+                                    </div>
+                                    <div class="rule-item">
+                                        Model pentru ceilalți membri ai comunității
+                                    </div>
+                                    <div class="rule-item">
+                                        Sincer în orice situație de pe server
+                                    </div>
+                                    <div class="rule-item">
+                                        Obligația de a interveni când este nevoie
+                                    </div>
+                                </div>
 
-                        <div class="rule-section">
-                            <h4><i class="fas fa-shield-alt"></i> Interacțiuni cu Poliția</h4>
-                            <div class="rule-item">
-                                <strong>Cop Fear</strong> - Nerolarea fricii față de poliție
-                            </div>
-                            <div class="rule-item">
-                                <strong>Cop Bait</strong> - Instigarea poliției la roleplay nedorit
-                            </div>
-                        </div>
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-balance-scale"></i> Sancțiuni</h4>
+                                    <div class="criteria-box">
+                                        <div class="criteria-title">Reguli pentru aplicarea sancțiunilor:</div>
+                                        <div class="criteria-item">• Sancționezi DOAR când vezi filmarea completă la ticket</div>
+                                        <div class="criteria-item">• Nu sancționezi pe jumătate de filmare dacă nu ești sigur</div>
+                                        <div class="criteria-item">• Când sancționezi o acțiune văzută de tine, trebuie să o filmezi</div>
+                                        <div class="criteria-item">• Nu sancționezi pe baza de vorbe/martori</div>
+                                        <div class="criteria-item">• Nu favorizezi persoane la ticket</div>
+                                        <div class="criteria-item">• Fiecare este egal și își primește sancțiunea corectă</div>
+                                        <div class="criteria-item">• Poți întrerupe roleplay-ul doar cu dovadă că se încalcă reguli</div>
+                                    </div>
+                                </div>
 
-                        <div class="rule-section">
-                            <h4><i class="fas fa-swimmer"></i> Mișcări și Acțiuni</h4>
-                            <div class="rule-item">
-                                <strong>Olympic Swim</strong> - Înot continuu fără pauză (max 2 minute + 1 minut pauză)
-                            </div>
-                            <div class="rule-item">
-                                <strong>Chicken Run</strong> - Alergare în zig-zag (permis o singură dată)
-                            </div>
-                            <div class="rule-item">
-                                <strong>Ninja Jack</strong> - Furt vehicul fără /me
-                            </div>
-                            <div class="rule-item">
-                                <strong>Big Weapon Roll</strong> - Miscarea Roll cu armă de calibru mare
-                            </div>
-                            <div class="rule-item">
-                                <strong>Combat Logging</strong> - Delogare în timpul interacțiunii PvP
-                            </div>
-                        </div>
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-exclamation-triangle"></i> Abuz Staff</h4>
+                                    <div class="criteria-box">
+                                        <div class="criteria-title">Ce constituie abuz:</div>
+                                        <div class="criteria-item">• Folosirea funcțiilor staff pentru avantaje personale</div>
+                                        <div class="criteria-item">• Oferirea de iteme pentru beneficiu personal</div>
+                                        <div class="criteria-subitem">↳ NU este abuz: iteme pentru testare pe server</div>
+                                        <div class="criteria-item">• În caz de abuz din partea staff-ului superior: raportează cu dovezi la fondator/supervizor</div>
+                                    </div>
+                                </div>
 
-                        <div class="rule-section">
-                            <h4><i class="fas fa-user"></i> Caracter și Identitate</h4>
-                            <div class="rule-item">
-                                <strong>Numele Caracterului</strong> - Creativ și inventiv, fără nume de celebrități
-                            </div>
-                            <div class="rule-item">
-                                <strong>Vârsta Caracterului</strong> - Obligația de a face roleplay de vârsta introdusă
-                            </div>
-                            <div class="rule-item">
-                                <strong>Naționalitatea Caracterului</strong> - Dacă pretenzi că ești asiatic, ai caracteristicile și accentul
-                            </div>
-                            <div class="rule-item">
-                                <strong>Valoarea Vieții</strong> - Fără acțiuni absurde sau inconștiente
-                            </div>
-                        </div>
-
-                        <div class="rule-section">
-                            <h4><i class="fas fa-store"></i> Business și Economie</h4>
-                            <div class="rule-item">
-                                <strong>Business</strong> - Obligația de a juca activ business-ul deținut
-                            </div>
-                            <div class="rule-item">
-                                <strong>Tranzacții OOC în IC</strong> - Interzis (averi, etc.)
-                            </div>
-                        </div>
-
-                        <div class="rule-section">
-                            <h4><i class="fas fa-money-bill-wave"></i> Scam și Inșelăciune</h4>
-                            <div class="criteria-box">
-                                <div class="criteria-title">Scamul este permis DOAR în următoarele condiții:</div>
-                                <div class="criteria-item">• Suma bunurilor nu depășește 20,000$</div>
-                                <div class="criteria-item">• Vinzi un obiect stricat ca fiind bun</div>
-                                <div class="criteria-subitem">↳ Permis doar pentru: Arme Albe, Iteme de Job, Vehicule sub 20,000$</div>
-                            </div>
-                        </div>
-
-                        <div class="rule-section">
-                            <h4><i class="fas fa-robot"></i> Macro și Automatizare</h4>
-                            <div class="criteria-box">
-                                <div class="criteria-title">Macro-ul este permis DOAR dacă:</div>
-                                <div class="criteria-item">• Ești la PC când macro-ul rulează</div>
-                                <div class="criteria-item">• Macro-ul nu dăunează comunității</div>
-                            </div>
-                        </div>
-
-                        <div class="rule-section">
-                            <h4><i class="fas fa-people-robbery"></i> Jefuire</h4>
-                            <div class="criteria-box">
-                                <div class="criteria-title">Reguli de Jefuire:</div>
-                                <div class="criteria-item">• Aceeași persoană poate fi jefuită din nou după 3 ore</div>
-                                <div class="criteria-item">• Interzis să jefuiești obiecte de job</div>
-                                <div class="criteria-item">• Maxim 10,000$ Cash de pe o persoană</div>
-                                <div class="criteria-item">• Interzis să jefuiești: mâncare, telefon, apă</div>
-                                <div class="criteria-item">• Arma "Navy Revolver" - doar să ceri să o arunce</div>
-                                <div class="criteria-item">• Jefuirea sub 125 ore este interzisă</div>
-                                <div class="criteria-item">• Ore de jefuire: Ziua 09:00-12:00, Seara 18:00-05:00</div>
-                                <div class="criteria-item">• Persoanele cu sub 30 de ore nu pot fi jefuite</div>
-                            </div>
-                        </div>
-
-                        <div class="rule-section">
-                            <h4><i class="fas fa-car-burst"></i> Drive By</h4>
-                            <div class="criteria-box">
-                                <div class="criteria-title">Drive By este interzis când:</div>
-                                <div class="criteria-item">• Mașina nu încetinește când trage</div>
-                                <div class="criteria-item">• Asasinezi ținta în zonă publică fără să fii mascat</div>
-                            </div>
-                        </div>
-
-                        <div class="rule-section">
-                            <h4><i class="fas fa-users"></i> Comportament</h4>
-                            <div class="rule-item">
-                                <strong>Troll</strong> - Acțiuni care deranjează sau strică experiența de joc
-                            </div>
-                            <div class="rule-item">
-                                <strong>Bombardier</strong> - Comportament agresiv și deranjant
-                            </div>
-                            <div class="rule-item">
-                                <strong>Injurii Limitare</strong> - Permise limitat, excepții: roleplay trădător, injurii în absența playerului
-                            </div>
-                        </div>
-
-                        <div class="rule-section">
-                            <h4><i class="fas fa-female"></i> Comportament cu Fetele</h4>
-                            <div class="criteria-box">
-                                <div class="criteria-title">Interzis:</div>
-                                <div class="criteria-item">• Să pui fata într-o postură jenantă</div>
-                                <div class="criteria-item">• Să o faci să se simtă deranjată</div>
-                                <div class="criteria-item">• Hărțuirea fetelor din comunitate</div>
-                                <div class="criteria-item">• Discriminare sau favoritism pe bază de sex</div>
-                            </div>
-                        </div>
-
-                        <div class="rule-section">
-                            <h4><i class="fas fa-users-between-lines"></i> Fake Faction</h4>
-                            <div class="criteria-box">
-                                <div class="criteria-title">Permis DOAR în cazul:</div>
-                                <div class="criteria-item">• Pretinzi că faci parte dintr-o facțiune pentru un roleplay specific, nu definitiv</div>
-                            </div>
-                        </div>
-
-                        <div class="rule-section">
-                            <h4><i class="fas fa-bug"></i> Alte Reguli</h4>
-                            <div class="rule-item">
-                                <strong>Bug Abuse</strong> - Folosirea bug-urilor pentru avantaj
-                            </div>
-                            <div class="rule-item">
-                                <strong>Ban Evade</strong> - Folosirea altui cont când ești banat
-                            </div>
-                            <div class="rule-item">
-                                <strong>Reclama</strong> - Interzisă în orice formă
-                            </div>
-                            <div class="rule-item">
-                                <strong>Tatuaje</strong> - Pe față nu trebuie să acopere sau să facă dificilă recunoașterea
-                            </div>
-                            <div class="rule-item">
-                                <strong>Character Kill</strong> - Resetare caracter, viață nouă
-                            </div>
-                            <div class="rule-item">
-                                <strong>Player Kill</strong> - Uitarea informațiilor după moarte în roleplay
+                                <div class="rule-section">
+                                    <h4><i class="fas fa-tasks"></i> Obligații</h4>
+                                    <div class="criteria-box">
+                                        <div class="criteria-title">Obligații ale staff-ului:</div>
+                                        <div class="criteria-item">• Să ajuți fiecare membru cu orice problemă</div>
+                                        <div class="criteria-item">• Să spui motivul și durata sancțiunii</div>
+                                        <div class="criteria-item">• Să avertizezi un player care repetă aceeași greșeală</div>
+                                        <div class="criteria-item">• Să rezolvi tickete cât timp ești on-duty</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Discord Rules -->
-                <div class="rule-category" id="discord-rules">
-                    <h3>Reguli Comunitate Discord</h3>
-                    <div class="rules-text">
-                        <div class="rule-section">
-                            <h4><i class="fas fa-handshake"></i> Respect și Bună Cuviință</h4>
-                            <div class="rule-item">
-                                Respectă toți membrii, indiferent de opinii sau preferințe
-                            </div>
-                            <div class="rule-item">
-                                Nu sunt tolerate insultele, jignirile, bullying-ul sau discriminarea
-                            </div>
-                            <div class="rule-item">
-                                Conflictele personale se rezolvă în privat, nu pe server
-                            </div>
-                        </div>
-
-                        <div class="rule-section">
-                            <h4><i class="fas fa-comment-slash"></i> Conținut și Limbaj</h4>
-                            <div class="rule-item">
-                                Evită limbajul vulgar excesiv și conținutul nepotrivit
-                            </div>
-                            <div class="rule-item">
-                                Postarea de materiale NSFW, pornografie sau gore este interzisă
-                            </div>
-                            <div class="rule-item">
-                                Glumele pe subiecte sensibile nu sunt acceptate
-                            </div>
-                        </div>
-
-                        <div class="rule-section">
-                            <h4><i class="fas fa-bullhorn"></i> Spam și Activitate</h4>
-                            <div class="rule-item">
-                                Nu face spam sau flood în chat sau voice
-                            </div>
-                            <div class="rule-item">
-                                Evită mesaje repetitive, emoji spam sau pinguri excesive
-                            </div>
-                            <div class="rule-item">
-                                Comenzile bot-ului trebuie folosite responsabil
-                            </div>
-                            <div class="rule-item">
-                                Muzica doar în canalele dedicate
-                            </div>
-                        </div>
-
-                        <div class="rule-section">
-                            <h4><i class="fas fa-shield-alt"></i> Securitate și Confidențialitate</h4>
-                            <div class="rule-item">
-                                Reclamele la alte servere nu sunt permise fără acordul staff-ului
-                            </div>
-                            <div class="rule-item">
-                                Linkurile externe trebuie să fie sigure și fără conținut malițios
-                            </div>
-                            <div class="rule-item">
-                                Conturile multiple pentru avantaje sunt interzise
-                            </div>
-                            <div class="rule-item">
-                                Datele personale nu trebuie împărtășite
-                            </div>
-                        </div>
-
-                        <div class="rule-section">
-                            <h4><i class="fas fa-hashtag"></i> Organizare și Canale</h4>
-                            <div class="rule-item">
-                                Folosește fiecare canal pentru scopul său
-                            </div>
-                            <div class="rule-item">
-                                Respectă descrierea fiecărui canal
-                            </div>
-                        </div>
-
-                        <div class="rule-section">
-                            <h4><i class="fas fa-gavel"></i> Staff și Decizii</h4>
-                            <div class="rule-item">
-                                Respectă deciziile staff-ului
-                            </div>
-                            <div class="rule-item">
-                                În caz de probleme, deschide un ticket
-                            </div>
-                            <div class="rule-item">
-                                Contactează staff-ul în mod respectuos
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Staff Rules -->
-                <div class="rule-category" id="staff-rules">
-                    <h3>Ghiduri pentru Echipa Staff</h3>
-                    <div class="rules-text">
-                        <div class="rule-section">
-                            <h4><i class="fas fa-user-tie"></i> Ce înseamnă să fii Staff</h4>
-                            <div class="rule-item">
-                                Persoană cu responsabilitate în plus pentru server
-                            </div>
-                            <div class="rule-item">
-                                Ajută la menținerea comunității ca loc plăcut pentru toți
-                            </div>
-                            <div class="rule-item">
-                                Model pentru ceilalți membri ai comunității
-                            </div>
-                            <div class="rule-item">
-                                Sincer în orice situație de pe server
-                            </div>
-                            <div class="rule-item">
-                                Obligația de a interveni când este nevoie
-                            </div>
-                        </div>
-
-                        <div class="rule-section">
-                            <h4><i class="fas fa-balance-scale"></i> Sancțiuni</h4>
-                            <div class="criteria-box">
-                                <div class="criteria-title">Reguli pentru aplicarea sancțiunilor:</div>
-                                <div class="criteria-item">• Sancționezi DOAR când vezi filmarea completă la ticket</div>
-                                <div class="criteria-item">• Nu sancționezi pe jumătate de filmare dacă nu ești sigur</div>
-                                <div class="criteria-item">• Când sancționezi o acțiune văzută de tine, trebuie să o filmezi</div>
-                                <div class="criteria-item">• Nu sancționezi pe baza de vorbe/martori</div>
-                                <div class="criteria-item">• Nu favorizezi persoane la ticket</div>
-                                <div class="criteria-item">• Fiecare este egal și își primește sancțiunea corectă</div>
-                                <div class="criteria-item">• Poți întrerupe roleplay-ul doar cu dovadă că se încalcă reguli</div>
-                            </div>
-                        </div>
-
-                        <div class="rule-section">
-                            <h4><i class="fas fa-exclamation-triangle"></i> Abuz Staff</h4>
-                            <div class="criteria-box">
-                                <div class="criteria-title">Ce constituie abuz:</div>
-                                <div class="criteria-item">• Folosirea funcțiilor staff pentru avantaje personale</div>
-                                <div class="criteria-item">• Oferirea de iteme pentru beneficiu personal</div>
-                                <div class="criteria-subitem">↳ NU este abuz: iteme pentru testare pe server</div>
-                                <div class="criteria-item">• În caz de abuz din partea staff-ului superior: raportează cu dovezi la fondator/supervizor</div>
-                            </div>
-                        </div>
-
-                        <div class="rule-section">
-                            <h4><i class="fas fa-tasks"></i> Obligații</h4>
-                            <div class="criteria-box">
-                                <div class="criteria-title">Obligații ale staff-ului:</div>
-                                <div class="criteria-item">• Să ajuți fiecare membru cu orice problemă</div>
-                                <div class="criteria-item">• Să spui motivul și durata sancțiunii</div>
-                                <div class="criteria-item">• Să avertizezi un player care repetă aceeași greșeală</div>
-                                <div class="criteria-item">• Să rezolvi tickete cât timp ești on-duty</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </section>
         </div>
-    </section>
-</div>
 
         <!-- Staff Page -->
         <div class="page-content" id="staff-page">
@@ -1554,88 +1503,28 @@
                 observer.observe(element);
             });
 
-            // Crown animation for owner cards
-            const ownerCards = document.querySelectorAll('[data-role="owner"]');
-            ownerCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    for (let i = 0; i < 12; i++) {
-                        const crown = document.createElement('div');
-                        crown.className = 'crown-fall';
-                        crown.innerHTML = '<i class="fas fa-crown"></i>';
-                        crown.style.left = Math.random() * 100 + '%';
-                        crown.style.animationDelay = Math.random() * 3 + 's';
-                        this.appendChild(crown);
-                    }
-                });
-
-                card.addEventListener('mouseleave', function() {
-                    const crowns = this.querySelectorAll('.crown-fall');
-                    crowns.forEach(crown => crown.remove());
-                });
-            });
-
-            // Shield animation for supervisor cards
-            const supervisorCards = document.querySelectorAll('[data-role="supervisor"]');
-            supervisorCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    for (let i = 0; i < 10; i++) {
-                        const shield = document.createElement('div');
-                        shield.className = 'shield-fall';
-                        shield.innerHTML = '<i class="fas fa-shield-alt"></i>';
-                        shield.style.left = Math.random() * 100 + '%';
-                        shield.style.animationDelay = Math.random() * 2.5 + 's';
-                        this.appendChild(shield);
-                    }
-                });
-
-                card.addEventListener('mouseleave', function() {
-                    const shields = this.querySelectorAll('.shield-fall');
-                    shields.forEach(shield => shield.remove());
-                });
-            });
-
-            // Star animation for admin card
-            const adminCards = document.querySelectorAll('[data-role="admin"]');
-            adminCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    for (let i = 0; i < 8; i++) {
-                        const star = document.createElement('div');
-                        star.className = 'star-fall';
-                        star.innerHTML = '<i class="fas fa-star"></i>';
-                        star.style.left = Math.random() * 100 + '%';
-                        star.style.animationDelay = Math.random() * 2 + 's';
-                        this.appendChild(star);
-                    }
-                });
-
-                card.addEventListener('mouseleave', function() {
-                    const stars = this.querySelectorAll('.star-fall');
-                    stars.forEach(star => star.remove());
-                });
-            });
-
             // Rules tabs functionality
-const ruleTabs = document.querySelectorAll('.rule-tab');
-const ruleCategories = document.querySelectorAll('.rule-category');
+            const ruleTabs = document.querySelectorAll('.rule-tab');
+            const ruleCategories = document.querySelectorAll('.rule-category');
 
-ruleTabs.forEach(tab => {
-    tab.addEventListener('click', function() {
-        const targetCategory = this.getAttribute('data-category');
-        
-        // Update active tab
-        ruleTabs.forEach(t => t.classList.remove('active'));
-        this.classList.add('active');
-        
-        // Show target category
-        ruleCategories.forEach(category => {
-            category.classList.remove('active');
-            if (category.id === `${targetCategory}-rules`) {
-                category.classList.add('active');
-            }
+            ruleTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const targetCategory = this.getAttribute('data-category');
+                    
+                    // Update active tab
+                    ruleTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show target category
+                    ruleCategories.forEach(category => {
+                        category.classList.remove('active');
+                        if (category.id === `${targetCategory}-rules`) {
+                            category.classList.add('active');
+                        }
+                    });
+                });
+            });
         });
-    });
-});
     </script>
 </body>
 </html>
-
