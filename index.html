@@ -432,22 +432,21 @@
         }
 
         .staff-avatar {
-    width: 140px;
-    height: 140px;
-    margin: 0 auto 1.5rem;
-    border-radius: 50%;
-    /* am șters background-ul solid ca să lase poza să se vadă */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    color: white;
-    border: 4px solid var(--secondary-gray);
-    box-shadow: 0 0 30px rgba(0, 153, 255, 0.4);
-    overflow: hidden;
-    position: relative;
-    transition: all 0.3s ease;
-}
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            border: 4px solid var(--secondary-gray);
+            box-shadow: 0 0 30px rgba(0, 153, 255, 0.4);
+            overflow: hidden;
+            position: relative;
+            transition: all 0.3s ease;
+        }
 
         .staff-card:hover .staff-avatar {
             transform: scale(1.1);
@@ -648,94 +647,141 @@
             font-weight: 700;
         }
 
-        /* Rules Section */
+        /* Rules Dashboard */
+        .rules-dashboard {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
         .rules-tabs {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-}
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
 
-.tab-btn {
-    background: var(--glass-bg);
-    color: var(--text-light);
-    border: 1px solid var(--glass-border);
-    padding: 0.8rem 1.5rem;
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
+        .tab-btn {
+            background: var(--glass-bg);
+            color: var(--text-light);
+            border: 1px solid var(--glass-border);
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
 
-.tab-btn.active {
-    background: var(--gradient-blue);
-    color: white;
-    border-color: var(--swit-light-blue);
-}
+        .tab-btn.active {
+            background: var(--gradient-blue);
+            color: white;
+            border-color: var(--swit-light-blue);
+        }
 
-.tab-btn:hover {
-    transform: translateY(-2px);
-}
+        .tab-btn:hover {
+            transform: translateY(-2px);
+        }
 
-.tab-content-container {
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    padding: 2rem;
-}
+        .tab-content {
+            display: none;
+            min-height: 300px;
+            padding: 1.5rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+        }
 
-.tab-content {
-    display: none;
-}
+        .tab-content.active {
+            display: block;
+        }
 
-.tab-content.active {
-    display: block;
-}
+        .rules-editor {
+            min-height: 200px;
+            padding: 1rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.6;
+            outline: none;
+            overflow-y: auto;
+        }
 
-.rules-editor {
-    min-height: 200px;
-    padding: 1rem;
-    border: 1px solid var(--glass-border);
-    border-radius: 12px;
-    background: rgba(255,255,255,0.03);
-    overflow-y: auto;
-    color: var(--text-light);
-}
-.rules-editor:focus { outline: none; }
+        .rules-editor:focus {
+            border-color: var(--swit-light-blue);
+        }
 
-.tabs {
-    display:flex;
-    gap:0.5rem;
-    margin-bottom:1rem;
-}
-.tab {
-    padding:0.5rem 1rem;
-    border-radius:8px;
-    border:none;
-    cursor:pointer;
-    background: rgba(255,255,255,0.1);
-    color: var(--text-light);
-    transition:0.2s;
-}
-.tab.active { background: var(--gradient-blue); color:white; }
-.tab:hover { background: rgba(255,255,255,0.2); }
+        .editor-toolbar {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
 
-.editor-toolbar button {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    color: var(--text-light);
-    padding: 0.5rem 0.7rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-.editor-toolbar button:hover {
-    background: var(--swit-light-blue);
-    color: black;
-}
+        .editor-toolbar button {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-light);
+            padding: 0.5rem 0.7rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
 
+        .editor-toolbar button:hover {
+            background: var(--swit-light-blue);
+            color: black;
+        }
+
+        .rules-controls {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            justify-content: flex-end;
+        }
+
+        .rules-controls button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .save-btn {
+            background: var(--gradient-blue);
+            color: white;
+        }
+
+        .save-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 153, 255, 0.4);
+        }
+
+        .add-rule-btn {
+            background: #4caf50;
+            color: white;
+        }
+
+        .add-rule-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .delete-rule-btn {
+            background: #f44336;
+            color: white;
+        }
+
+        .delete-rule-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(244, 67, 54, 0.4);
+        }
 
         /* Footer */
         footer {
@@ -832,8 +878,7 @@
             }
 
             .features-grid,
-            .staff-grid,
-            .rules-grid {
+            .staff-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -851,6 +896,14 @@
                 max-width: 300px;
                 justify-content: center;
             }
+
+            .rules-tabs {
+                flex-direction: column;
+            }
+
+            .rules-controls {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -858,9 +911,8 @@
     <!-- Navigation -->
     <nav class="navbar liquid-glass">
         <div class="logo-container">
-            <div class="logo">
-              <img src="images/logo.png" alt="Swit Logo" style="height:40px; width:auto; vertical-align:middle; margin-right:8px;">
-          </div>
+            <div class="logo-img">SW</div>
+            <div class="logo-text">Swit</div>
         </div>
         <div class="nav-links">
             <a href="#" class="nav-link active" data-page="home">Home</a>
@@ -880,7 +932,7 @@
             <section class="hero">
                 <div class="forum-logo">
                     <div class="logo-circle">
-                         <img src="images/logo.png" alt="Swit Logo" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">
+                        <i class="fas fa-gamepad"></i>
                     </div>
                 </div>
                 <h1 class="forum-title">Swit Community</h1>
@@ -941,7 +993,7 @@
                     <div class="staff-card animate-on-scroll liquid-glass" data-role="owner">
                         <div class="staff-header">
                             <div class="staff-avatar">
-                                <img src="images/paradox.jpg" alt="Paradox">
+                                <img src="https://via.placeholder.com/140x140/ff0000/ffffff?text=Paradox" alt="Paradox">
                             </div>
                             <h3 class="staff-name">Paradox</h3>
                             <div class="staff-role">
@@ -957,7 +1009,7 @@
                     <div class="staff-card animate-on-scroll liquid-glass" data-role="owner">
                         <div class="staff-header">
                             <div class="staff-avatar">
-                                <img src="images/slepy.jpg" alt="obsedat">
+                                <img src="https://via.placeholder.com/140x140/ff0000/ffffff?text=Obsedat" alt="obsedat">
                             </div>
                             <h3 class="staff-name">obsedat</h3>
                             <div class="staff-role">
@@ -1002,41 +1054,136 @@
             </section>
         </div>
 
-<!-- Rules Page -->
-<div class="page-content" id="rules-page">
-    <section class="rules">
-        <h2 class="section-title">Server Rules</h2>
+        <!-- Rules Page -->
+        <div class="page-content" id="rules-page">
+            <section class="rules">
+                <h2 class="section-title">Server Rules Dashboard</h2>
+                
+                <div class="rules-dashboard liquid-glass">
+                    <div class="rules-tabs">
+                        <button class="tab-btn active" data-tab="fivem-rules">FiveM Rules</button>
+                        <button class="tab-btn" data-tab="discord-rules">Discord Rules</button>
+                        <button class="tab-btn" data-tab="staff-rules">Staff Rules</button>
+                    </div>
 
-        <<div class="rules-tabs-container liquid-glass" style="padding:1rem; border-radius:12px; border:1px solid var(--glass-border);">
-    <div class="tabs">
-        <button class="tab active" data-editor="fivem-rules">Fivem</button>
-        <button class="tab" data-editor="discord-rules">Discord</button>
-        <button class="tab" data-editor="staff-rules">Staff</button>
-        <button id="save-btn" title="Save Current Rules" style="margin-left:auto; background:#4caf50; color:white; border:none; padding:0.5rem 1rem; border-radius:8px; cursor:pointer;">
-            💾 Save
-        </button>
-    </div>
+                    <!-- FiveM Rules Tab -->
+                    <div class="tab-content active" id="fivem-rules">
+                        <div class="editor-toolbar">
+                            <button onclick="formatText('bold')" title="Bold"><i class="fas fa-bold"></i></button>
+                            <button onclick="formatText('italic')" title="Italic"><i class="fas fa-italic"></i></button>
+                            <button onclick="formatText('underline')" title="Underline"><i class="fas fa-underline"></i></button>
+                            <button onclick="formatText('insertUnorderedList')" title="Bullet List"><i class="fas fa-list-ul"></i></button>
+                            <button onclick="formatText('insertOrderedList')" title="Numbered List"><i class="fas fa-list-ol"></i></button>
+                        </div>
+                        <div class="rules-editor" id="fivem-rules-editor" contenteditable="true" spellcheck="false">
+                            <h3>FiveM Server Rules</h3>
+                            <p><strong>General Rules:</strong></p>
+                            <ul>
+                                <li>Respect all players and staff members</li>
+                                <li>No harassment, hate speech, or discrimination</li>
+                                <li>English only in global chat</li>
+                                <li>No advertising other servers</li>
+                                <li>Follow staff instructions immediately</li>
+                                <li>No exploiting or bug abuse</li>
+                            </ul>
+                            <p><strong>Roleplay Rules:</strong></p>
+                            <ul>
+                                <li>Stay in character while roleplaying</li>
+                                <li>No metagaming (using OOC information)</li>
+                                <li>No powergaming (forcing actions)</li>
+                                <li>FearRP - value your character's life</li>
+                                <li>New Life Rule applies after death</li>
+                                <li>Proper character development required</li>
+                            </ul>
+                        </div>
+                        <div class="rules-controls">
+                            <button class="add-rule-btn" onclick="addRule('fivem-rules-editor')">
+                                <i class="fas fa-plus"></i> Add Rule
+                            </button>
+                            <button class="save-btn" onclick="saveRules('fivem-rules')">
+                                <i class="fas fa-save"></i> Save Rules
+                            </button>
+                        </div>
+                    </div>
 
-           <!-- Toolbar -->
-    <div class="editor-toolbar" style="padding:10px; margin-bottom:1rem; display:flex; gap:0.5rem;">
-        <button onclick="formatText('bold')" title="Bold"><i class="fas fa-bold"></i></button>
-        <button onclick="formatText('italic')" title="Italic"><i class="fas fa-italic"></i></button>
-        <button onclick="formatText('underline')" title="Underline"><i class="fas fa-underline"></i></button>
-        <button onclick="formatText('hiliteColor','black')" title="Highlight"><i class="fas fa-highlighter"></i></button>
-    </div>
+                    <!-- Discord Rules Tab -->
+                    <div class="tab-content" id="discord-rules">
+                        <div class="editor-toolbar">
+                            <button onclick="formatText('bold')" title="Bold"><i class="fas fa-bold"></i></button>
+                            <button onclick="formatText('italic')" title="Italic"><i class="fas fa-italic"></i></button>
+                            <button onclick="formatText('underline')" title="Underline"><i class="fas fa-underline"></i></button>
+                            <button onclick="formatText('insertUnorderedList')" title="Bullet List"><i class="fas fa-list-ul"></i></button>
+                            <button onclick="formatText('insertOrderedList')" title="Numbered List"><i class="fas fa-list-ol"></i></button>
+                        </div>
+                        <div class="rules-editor" id="discord-rules-editor" contenteditable="true" spellcheck="false">
+                            <h3>Discord Server Rules</h3>
+                            <p><strong>General Conduct:</strong></p>
+                            <ul>
+                                <li>Be respectful to all members</li>
+                                <li>No spamming or flooding channels</li>
+                                <li>Keep conversations in appropriate channels</li>
+                                <li>No NSFW content</li>
+                                <li>Follow Discord's Terms of Service</li>
+                            </ul>
+                            <p><strong>Voice Chat Rules:</strong></p>
+                            <ul>
+                                <li>Use push-to-talk in crowded channels</li>
+                                <li>No background noise or music</li>
+                                <li>Keep voice chat clear and audible</li>
+                                <li>Respect others in voice channels</li>
+                                <li>No screaming or excessively loud volumes</li>
+                            </ul>
+                        </div>
+                        <div class="rules-controls">
+                            <button class="add-rule-btn" onclick="addRule('discord-rules-editor')">
+                                <i class="fas fa-plus"></i> Add Rule
+                            </button>
+                            <button class="save-btn" onclick="saveRules('discord-rules')">
+                                <i class="fas fa-save"></i> Save Rules
+                            </button>
+                        </div>
+                    </div>
 
-        <!-- Regulamente -->
-          <div class="rules-editor-container">
-        <div class="rules-editor" id="fivem-rules" contenteditable="true" spellcheck="false"></div>
-        <div class="rules-editor" id="discord-rules" contenteditable="true" spellcheck="false" style="display:none;"></div>
-        <div class="rules-editor" id="staff-rules" contenteditable="true" spellcheck="false" style="display:none;"></div>
-    </div>
-</div>
-        <button class="edit-rules-btn" onclick="toggleEditRules()">
-            <i class="fas fa-edit"></i> Edit Rules
-        </button>
-    </section>
-</div>
+                    <!-- Staff Rules Tab -->
+                    <div class="tab-content" id="staff-rules">
+                        <div class="editor-toolbar">
+                            <button onclick="formatText('bold')" title="Bold"><i class="fas fa-bold"></i></button>
+                            <button onclick="formatText('italic')" title="Italic"><i class="fas fa-italic"></i></button>
+                            <button onclick="formatText('underline')" title="Underline"><i class="fas fa-underline"></i></button>
+                            <button onclick="formatText('insertUnorderedList')" title="Bullet List"><i class="fas fa-list-ul"></i></button>
+                            <button onclick="formatText('insertOrderedList')" title="Numbered List"><i class="fas fa-list-ol"></i></button>
+                        </div>
+                        <div class="rules-editor" id="staff-rules-editor" contenteditable="true" spellcheck="false">
+                            <h3>Staff Guidelines</h3>
+                            <p><strong>Professional Conduct:</strong></p>
+                            <ul>
+                                <li>Lead by example at all times</li>
+                                <li>Remain impartial when handling disputes</li>
+                                <li>Document all administrative actions</li>
+                                <li>Maintain confidentiality of staff discussions</li>
+                                <li>Escalate complex issues to higher staff</li>
+                            </ul>
+                            <p><strong>Enforcement Guidelines:</strong></p>
+                            <ul>
+                                <li>Always issue warnings before punishments</li>
+                                <li>Be consistent with rule enforcement</li>
+                                <li>Use appropriate punishment levels</li>
+                                <li>Document all warnings and punishments</li>
+                                <li>Communicate clearly with players</li>
+                            </ul>
+                        </div>
+                        <div class="rules-controls">
+                            <button class="add-rule-btn" onclick="addRule('staff-rules-editor')">
+                                <i class="fas fa-plus"></i> Add Rule
+                            </button>
+                            <button class="save-btn" onclick="saveRules('staff-rules')">
+                                <i class="fas fa-save"></i> Save Rules
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
 
         <!-- Staff Page -->
         <div class="page-content" id="staff-page">
@@ -1047,7 +1194,7 @@
                     <div class="staff-card animate-on-scroll liquid-glass" data-role="owner">
                         <div class="staff-header">
                             <div class="staff-avatar">
-                                <img src="images/paradox.jpg" alt="Paradox">
+                                <img src="https://via.placeholder.com/140x140/ff0000/ffffff?text=Paradox" alt="Paradox">
                             </div>
                             <h3 class="staff-name">Paradox</h3>
                             <div class="staff-role">
@@ -1063,7 +1210,7 @@
                     <div class="staff-card animate-on-scroll liquid-glass" data-role="owner">
                         <div class="staff-header">
                             <div class="staff-avatar">
-                                <img src="images/slepy.jpg" alt="obsedat">
+                                <img src="https://via.placeholder.com/140x140/ff0000/ffffff?text=Obsedat" alt="obsedat">
                             </div>
                             <h3 class="staff-name">obsedat</h3>
                             <div class="staff-role">
@@ -1079,7 +1226,7 @@
                     <div class="staff-card animate-on-scroll liquid-glass" data-role="supervisor">
                         <div class="staff-header">
                             <div class="staff-avatar">
-                                <img src="images/teobolz.jpg" alt="9yuv">
+                                <img src="https://via.placeholder.com/140x140/ffa500/ffffff?text=9yuv" alt="9yuv">
                             </div>
                             <h3 class="staff-name">9yuv</h3>
                             <div class="staff-role">
@@ -1095,7 +1242,7 @@
                     <div class="staff-card animate-on-scroll liquid-glass" data-role="supervisor">
                         <div class="staff-header">
                             <div class="staff-avatar">
-                                <img src="images/luca.png" alt="sase">
+                                <img src="https://via.placeholder.com/140x140/ffa500/ffffff?text=Sase" alt="sase">
                             </div>
                             <h3 class="staff-name">sase</h3>
                             <div class="staff-role">
@@ -1111,7 +1258,7 @@
                     <div class="staff-card animate-on-scroll liquid-glass" data-role="admin">
                         <div class="staff-header">
                             <div class="staff-avatar">
-                                <img src="images/rafa.png" alt="RafaelDream2">
+                                <img src="https://via.placeholder.com/140x140/ffff00/000000?text=Rafael" alt="RafaelDream2">
                             </div>
                             <h3 class="staff-name">RafaelDream2</h3>
                             <div class="staff-role">
@@ -1146,6 +1293,9 @@
     <script>
         // Page Navigation
         document.addEventListener('DOMContentLoaded', function() {
+            // Load saved rules
+            loadSavedRules();
+            
             const navLinks = document.querySelectorAll('.nav-link, .footer-links a, .btn-secondary');
             const pages = document.querySelectorAll('.page-content');
 
@@ -1176,6 +1326,24 @@
 
                     // Scroll to top
                     window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+
+            // Tab functionality
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tabId = btn.getAttribute('data-tab');
+                    
+                    // Update active tab button
+                    tabBtns.forEach(tab => tab.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    // Show active tab content
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    document.getElementById(tabId).classList.add('active');
                 });
             });
 
@@ -1260,51 +1428,76 @@
             });
         });
 
-        // Rules editing function
-        // Tab functionality
-const editors = document.querySelectorAll('.rules-editor');
-const tabs = document.querySelectorAll('.tab');
-const saveBtn = document.getElementById('save-btn');
+        // Rules Editor Functions
+        function formatText(command, value = null) {
+            document.execCommand(command, false, value);
+        }
 
-// Încarcă textul salvat
-editors.forEach(editor => {
-    const saved = localStorage.getItem(editor.id);
-    if (saved) editor.innerHTML = saved;
-});
+        function addRule(editorId) {
+            const editor = document.getElementById(editorId);
+            const selection = window.getSelection();
+            
+            if (selection.rangeCount > 0) {
+                const range = selection.getRangeAt(0);
+                const li = document.createElement('li');
+                li.textContent = 'New rule - edit this text';
+                
+                // Find the closest ul/ol
+                let list = range.commonAncestorContainer;
+                while (list && list.nodeName !== 'UL' && list.nodeName !== 'OL') {
+                    list = list.parentNode;
+                }
+                
+                if (list) {
+                    list.appendChild(li);
+                } else {
+                    // Create a new list if none exists
+                    const newList = document.createElement('ul');
+                    newList.appendChild(li);
+                    editor.appendChild(newList);
+                }
+            } else {
+                // If no selection, just add to the end
+                const lists = editor.querySelectorAll('ul, ol');
+                if (lists.length > 0) {
+                    const lastList = lists[lists.length - 1];
+                    const li = document.createElement('li');
+                    li.textContent = 'New rule - edit this text';
+                    lastList.appendChild(li);
+                } else {
+                    const newList = document.createElement('ul');
+                    const li = document.createElement('li');
+                    li.textContent = 'New rule - edit this text';
+                    newList.appendChild(li);
+                    editor.appendChild(newList);
+                }
+            }
+        }
 
-// Schimbare tab
-tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        editors.forEach(e => e.style.display = 'none');
-        document.getElementById(tab.dataset.editor).style.display = 'block';
-    });
-});
+        function saveRules(category) {
+            const editor = document.getElementById(`${category}-editor`);
+            const content = editor.innerHTML;
+            
+            // Save to localStorage
+            localStorage.setItem(`swit-rules-${category}`, content);
+            
+            // Show success message
+            alert(`✅ ${category.replace('-', ' ')} saved successfully!`);
+        }
 
-// Save rules manual
-saveBtn.addEventListener('click', () => {
-    const activeEditor = document.querySelector('.rules-editor:not([style*="display: none"])');
-    localStorage.setItem(activeEditor.id, activeEditor.innerHTML);
-    alert('✅ Rules saved!');
-});
-
-// Toolbar
-function formatText(command, value = null) {
-    document.execCommand(command, false, value);
-}
-
+        function loadSavedRules() {
+            const categories = ['fivem-rules', 'discord-rules', 'staff-rules'];
+            
+            categories.forEach(category => {
+                const savedContent = localStorage.getItem(`swit-rules-${category}`);
+                if (savedContent) {
+                    const editor = document.getElementById(`${category}-editor`);
+                    if (editor) {
+                        editor.innerHTML = savedContent;
+                    }
+                }
+            });
+        }
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
