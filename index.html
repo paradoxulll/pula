@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FiveM Community Forum</title>
+    <title>Swit - FiveM Community</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -20,11 +20,16 @@
             --accent-gray: #2a313d;
             --text-light: #e8f1f8;
             --text-muted: #8b9bb4;
-            --light-blue: #4fc3f7;
-            --electric-blue: #00b4ff;
-            --neon-blue: #00f2fe;
-            --gradient-blue: linear-gradient(135deg, #00b4ff, #00f2fe);
+            --swit-blue: #0099ff;
+            --swit-dark-blue: #0077cc;
+            --swit-light-blue: #33bbff;
+            --electric-blue: #00aaff;
+            --neon-blue: #00ddff;
+            --gradient-blue: linear-gradient(135deg, var(--swit-blue), var(--neon-blue));
             --gradient-dark: linear-gradient(135deg, #0a0e14, #151a21);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px rgba(0, 153, 255, 0.1);
         }
 
         body {
@@ -32,6 +37,14 @@
             color: var(--text-light);
             min-height: 100vh;
             overflow-x: hidden;
+        }
+
+        /* Liquid Glass Effect */
+        .liquid-glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
         }
 
         /* Custom Scrollbar */
@@ -61,17 +74,36 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            border-bottom: 1px solid rgba(79, 195, 247, 0.1);
+            border-bottom: 1px solid rgba(0, 153, 255, 0.2);
         }
 
-        .logo {
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
             font-size: 2rem;
             font-weight: 800;
             background: var(--gradient-blue);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 0 30px rgba(0, 242, 254, 0.3);
+            text-shadow: 0 0 30px rgba(0, 153, 255, 0.5);
         }
 
         .nav-links {
@@ -102,7 +134,7 @@
         }
 
         .nav-links a:hover {
-            color: var(--light-blue);
+            color: var(--swit-light-blue);
         }
 
         .nav-links a:hover::before {
@@ -110,7 +142,7 @@
         }
 
         .nav-links a.active {
-            color: var(--light-blue);
+            color: var(--swit-light-blue);
         }
 
         .nav-links a.active::before {
@@ -120,17 +152,20 @@
         .discord-btn {
             background: var(--gradient-blue);
             color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-decoration: none;
-            font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 180, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 153, 255, 0.4);
         }
 
         .discord-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 180, 255, 0.4);
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 153, 255, 0.6);
         }
 
         /* Main Content */
@@ -157,7 +192,7 @@
             transform: translate(-50%, -50%);
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(0, 180, 255, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 153, 255, 0.15) 0%, transparent 70%);
             z-index: -1;
         }
 
@@ -177,7 +212,7 @@
             align-items: center;
             justify-content: center;
             animation: float 6s ease-in-out infinite;
-            box-shadow: 0 0 50px rgba(0, 180, 255, 0.4);
+            box-shadow: 0 0 50px rgba(0, 153, 255, 0.5);
         }
 
         .logo-circle i {
@@ -190,11 +225,11 @@
             font-size: 4.5rem;
             font-weight: 800;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #fff 30%, var(--light-blue) 70%);
+            background: linear-gradient(135deg, #fff 30%, var(--swit-light-blue) 70%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 0 30px rgba(0, 242, 254, 0.2);
+            text-shadow: 0 0 30px rgba(0, 153, 255, 0.3);
         }
 
         .forum-subtitle {
@@ -229,12 +264,12 @@
         .btn-primary {
             background: var(--gradient-blue);
             color: white;
-            box-shadow: 0 6px 20px rgba(0, 180, 255, 0.4);
+            box-shadow: 0 6px 20px rgba(0, 153, 255, 0.4);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 180, 255, 0.6);
+            box-shadow: 0 10px 30px rgba(0, 153, 255, 0.6);
         }
 
         .btn-secondary {
@@ -246,7 +281,7 @@
 
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.15);
-            border-color: var(--light-blue);
+            border-color: var(--swit-light-blue);
             transform: translateY(-3px);
         }
 
@@ -259,7 +294,7 @@
             font-size: 3.5rem;
             text-align: center;
             margin-bottom: 5rem;
-            background: linear-gradient(135deg, #fff 30%, var(--light-blue) 70%);
+            background: linear-gradient(135deg, #fff 30%, var(--swit-light-blue) 70%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -286,12 +321,12 @@
         }
 
         .feature-card {
-            background: linear-gradient(145deg, rgba(30, 36, 46, 0.8), rgba(21, 26, 33, 0.8));
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
             border-radius: 20px;
             padding: 3rem 2rem;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -304,7 +339,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 180, 255, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(0, 153, 255, 0.1), transparent);
             transition: left 0.6s ease;
         }
 
@@ -314,8 +349,8 @@
 
         .feature-card:hover {
             transform: translateY(-10px);
-            border-color: var(--light-blue);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--swit-light-blue);
+            box-shadow: 0 20px 40px rgba(0, 153, 255, 0.2);
         }
 
         .feature-icon {
@@ -354,24 +389,27 @@
         }
 
         .staff-card {
-            background: linear-gradient(145deg, rgba(30, 36, 46, 0.8), rgba(21, 26, 33, 0.8));
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
             border-radius: 20px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
         .staff-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--light-blue);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            border-color: var(--swit-light-blue);
+            box-shadow: 0 20px 40px rgba(0, 153, 255, 0.3);
         }
 
         .staff-header {
             padding: 2.5rem 2rem;
             text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--glass-border);
             position: relative;
         }
 
@@ -397,7 +435,14 @@
             font-size: 3rem;
             color: white;
             border: 4px solid var(--secondary-gray);
-            box-shadow: 0 0 20px rgba(0, 180, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 153, 255, 0.4);
+            overflow: hidden;
+        }
+
+        .staff-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .staff-name {
@@ -408,7 +453,7 @@
         }
 
         .staff-role {
-            color: var(--light-blue);
+            color: var(--swit-light-blue);
             font-weight: 600;
             font-size: 1rem;
         }
@@ -423,17 +468,71 @@
             text-align: center;
         }
 
+        /* Crown Animation for Owner */
+        .crown-fall {
+            position: absolute;
+            top: -50px;
+            font-size: 1.5rem;
+            color: gold;
+            opacity: 0;
+            animation: fallDown 2s linear infinite;
+        }
+
+        @keyframes fallDown {
+            0% {
+                transform: translateY(-50px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(300px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Medal Animation for Co-Founder */
+        .medal-fall {
+            position: absolute;
+            top: -50px;
+            font-size: 1.2rem;
+            color: silver;
+            opacity: 0;
+            animation: medalFall 2s linear infinite;
+        }
+
+        @keyframes medalFall {
+            0% {
+                transform: translateY(-50px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(300px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
         /* Story Section */
         .story {
             padding: 6rem 2rem;
         }
 
         .story-content {
-            background: linear-gradient(145deg, rgba(30, 36, 46, 0.8), rgba(21, 26, 33, 0.8));
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
             border-radius: 20px;
             padding: 4rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
         }
@@ -445,7 +544,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(0, 180, 255, 0.05) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 153, 255, 0.08) 0%, transparent 70%);
             z-index: -1;
         }
 
@@ -479,23 +578,23 @@
         }
 
         .rules-category {
-            background: linear-gradient(145deg, rgba(30, 36, 46, 0.8), rgba(21, 26, 33, 0.8));
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
             border-radius: 20px;
             padding: 2.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
 
         .rules-category:hover {
             transform: translateY(-5px);
-            border-color: var(--light-blue);
+            border-color: var(--swit-light-blue);
         }
 
         .rules-category h3 {
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
-            color: var(--light-blue);
+            color: var(--swit-light-blue);
             display: flex;
             align-items: center;
             gap: 0.8rem;
@@ -507,7 +606,7 @@
 
         .rules-list li {
             padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--glass-border);
             color: var(--text-muted);
             display: flex;
             align-items: center;
@@ -520,7 +619,7 @@
 
         .rules-list li::before {
             content: '▸';
-            color: var(--light-blue);
+            color: var(--swit-light-blue);
             font-weight: bold;
         }
 
@@ -528,7 +627,7 @@
         footer {
             background: rgba(10, 14, 20, 0.95);
             padding: 4rem 2rem 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid var(--glass-border);
             margin-top: 6rem;
         }
 
@@ -563,7 +662,7 @@
         }
 
         .footer-links a:hover {
-            color: var(--light-blue);
+            color: var(--swit-light-blue);
         }
 
         .copyright {
@@ -643,14 +742,17 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">FiveM Community</div>
+    <nav class="navbar liquid-glass">
+        <div class="logo-container">
+            <div class="logo-img">SW</div>
+            <div class="logo-text">Swit</div>
+        </div>
         <div class="nav-links">
             <a href="#" class="nav-link active" data-page="home">Home</a>
             <a href="#" class="nav-link" data-page="rules">Rules</a>
             <a href="#" class="nav-link" data-page="staff">Staff</a>
             <a href="https://discord.gg/your-server" class="discord-btn" target="_blank">
-                <i class="fab fa-discord"></i> Join Discord
+                <i class="fab fa-discord"></i>
             </a>
         </div>
     </nav>
@@ -666,7 +768,7 @@
                         <i class="fas fa-gamepad"></i>
                     </div>
                 </div>
-                <h1 class="forum-title">FiveM Community</h1>
+                <h1 class="forum-title">Swit Community</h1>
                 <p class="forum-subtitle">
                     Experience the ultimate FiveM roleplay server with custom scripts, 
                     immersive gameplay, and a thriving community of dedicated players.
@@ -683,30 +785,30 @@
 
             <!-- Features Section -->
             <section class="features">
-                <h2 class="section-title animate-on-scroll">Why Choose Us?</h2>
+                <h2 class="section-title animate-on-scroll">Why Choose Swit?</h2>
                 <div class="features-grid">
-                    <div class="feature-card animate-on-scroll">
+                    <div class="feature-card animate-on-scroll liquid-glass">
                         <div class="feature-icon">
                             <i class="fas fa-shield-alt"></i>
                         </div>
                         <h3>Professional Staff</h3>
                         <p>Our dedicated team ensures fair play and provides 24/7 support to all community members.</p>
                     </div>
-                    <div class="feature-card animate-on-scroll">
+                    <div class="feature-card animate-on-scroll liquid-glass">
                         <div class="feature-icon">
                             <i class="fas fa-code"></i>
                         </div>
                         <h3>Custom Scripts</h3>
                         <p>Unique gameplay features and custom scripts developed exclusively for our community.</p>
                     </div>
-                    <div class="feature-card animate-on-scroll">
+                    <div class="feature-card animate-on-scroll liquid-glass">
                         <div class="feature-icon">
                             <i class="fas fa-users"></i>
                         </div>
                         <h3>Active Community</h3>
                         <p>Join hundreds of active players in our immersive roleplay experiences.</p>
                     </div>
-                    <div class="feature-card animate-on-scroll">
+                    <div class="feature-card animate-on-scroll liquid-glass">
                         <div class="feature-icon">
                             <i class="fas fa-rocket"></i>
                         </div>
@@ -720,10 +822,11 @@
             <section class="staff">
                 <h2 class="section-title animate-on-scroll">Meet Our Team</h2>
                 <div class="staff-grid">
-                    <!-- Staff Member 1 -->
-                    <div class="staff-card animate-on-scroll">
+                    <!-- Owner -->
+                    <div class="staff-card animate-on-scroll liquid-glass" id="owner-card">
                         <div class="staff-header">
                             <div class="staff-avatar">
+                                <!-- Replace with your custom photo -->
                                 <i class="fas fa-crown"></i>
                             </div>
                             <h3 class="staff-name">Alex Johnson</h3>
@@ -734,14 +837,15 @@
                         </div>
                     </div>
 
-                    <!-- Staff Member 2 -->
-                    <div class="staff-card animate-on-scroll">
+                    <!-- Co-Founder -->
+                    <div class="staff-card animate-on-scroll liquid-glass" id="cofounder-card">
                         <div class="staff-header">
                             <div class="staff-avatar">
-                                <i class="fas fa-shield-alt"></i>
+                                <!-- Replace with your custom photo -->
+                                <i class="fas fa-medal"></i>
                             </div>
                             <h3 class="staff-name">Sarah Miller</h3>
-                            <div class="staff-role">Head Administrator</div>
+                            <div class="staff-role">Co-Founder</div>
                         </div>
                         <div class="staff-info">
                             <p>Ensuring fair play and maintaining server quality standards.</p>
@@ -758,10 +862,10 @@
             <!-- Story Section -->
             <section class="story">
                 <h2 class="section-title animate-on-scroll">Our Story</h2>
-                <div class="story-content animate-on-scroll">
+                <div class="story-content liquid-glass animate-on-scroll">
                     <div class="story-text">
                         <p>
-                            Welcome to <span class="highlight">FiveM Community</span>, a server born from a passion for 
+                            Welcome to <span class="highlight">Swit Community</span>, a server born from a passion for 
                             immersive roleplay and a vision to create something truly special in the FiveM universe. 
                             Our journey began in 2020 when a small group of dedicated players noticed a gap in the 
                             market for a server that balanced serious roleplay with accessibility for newcomers.
@@ -787,7 +891,7 @@
                 <h2 class="section-title">Server Rules</h2>
                 <div class="rules-grid">
                     <!-- General Rules -->
-                    <div class="rules-category animate-on-scroll">
+                    <div class="rules-category animate-on-scroll liquid-glass">
                         <h3><i class="fas fa-globe"></i> General Rules</h3>
                         <ul class="rules-list">
                             <li>Respect all players and staff members</li>
@@ -799,7 +903,7 @@
                     </div>
 
                     <!-- Roleplay Rules -->
-                    <div class="rules-category animate-on-scroll">
+                    <div class="rules-category animate-on-scroll liquid-glass">
                         <h3><i class="fas fa-theater-masks"></i> Roleplay Rules</h3>
                         <ul class="rules-list">
                             <li>Stay in character while roleplaying</li>
@@ -811,7 +915,7 @@
                     </div>
 
                     <!-- Gameplay Rules -->
-                    <div class="rules-category animate-on-scroll">
+                    <div class="rules-category animate-on-scroll liquid-glass">
                         <h3><i class="fas fa-gamepad"></i> Gameplay Rules</h3>
                         <ul class="rules-list">
                             <li>No cheating, exploiting, or hacking</li>
@@ -823,7 +927,7 @@
                     </div>
 
                     <!-- Voice Chat Rules -->
-                    <div class="rules-category animate-on-scroll">
+                    <div class="rules-category animate-on-scroll liquid-glass">
                         <h3><i class="fas fa-microphone"></i> Voice Chat</h3>
                         <ul class="rules-list">
                             <li>Use push-to-talk in crowded areas</li>
@@ -842,10 +946,11 @@
             <section class="staff">
                 <h2 class="section-title">Our Staff Team</h2>
                 <div class="staff-grid">
-                    <!-- Staff Member 1 -->
-                    <div class="staff-card animate-on-scroll">
+                    <!-- Owner -->
+                    <div class="staff-card animate-on-scroll liquid-glass" id="owner-card-full">
                         <div class="staff-header">
                             <div class="staff-avatar">
+                                <!-- Replace with your custom photo -->
                                 <i class="fas fa-crown"></i>
                             </div>
                             <h3 class="staff-name">Alex Johnson</h3>
@@ -856,24 +961,26 @@
                         </div>
                     </div>
 
-                    <!-- Staff Member 2 -->
-                    <div class="staff-card animate-on-scroll">
+                    <!-- Co-Founder -->
+                    <div class="staff-card animate-on-scroll liquid-glass" id="cofounder-card-full">
                         <div class="staff-header">
                             <div class="staff-avatar">
-                                <i class="fas fa-shield-alt"></i>
+                                <!-- Replace with your custom photo -->
+                                <i class="fas fa-medal"></i>
                             </div>
                             <h3 class="staff-name">Sarah Miller</h3>
-                            <div class="staff-role">Head Administrator</div>
+                            <div class="staff-role">Co-Founder</div>
                         </div>
                         <div class="staff-info">
                             <p>Manages the admin team and handles complex player issues. Ensures server rules are properly enforced.</p>
                         </div>
                     </div>
 
-                    <!-- Staff Member 3 -->
-                    <div class="staff-card animate-on-scroll">
+                    <!-- Senior Moderator -->
+                    <div class="staff-card animate-on-scroll liquid-glass">
                         <div class="staff-header">
                             <div class="staff-avatar">
+                                <!-- Replace with your custom photo -->
                                 <i class="fas fa-user-shield"></i>
                             </div>
                             <h3 class="staff-name">Mike Rodriguez</h3>
@@ -884,10 +991,11 @@
                         </div>
                     </div>
 
-                    <!-- Staff Member 4 -->
-                    <div class="staff-card animate-on-scroll">
+                    <!-- Developer -->
+                    <div class="staff-card animate-on-scroll liquid-glass">
                         <div class="staff-header">
                             <div class="staff-avatar">
+                                <!-- Replace with your custom photo -->
                                 <i class="fas fa-code"></i>
                             </div>
                             <h3 class="staff-name">David Chen</h3>
@@ -905,7 +1013,7 @@
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <div class="footer-logo">FiveM Community</div>
+            <div class="footer-logo">Swit</div>
             <div class="footer-links">
                 <a href="#" data-page="home">Home</a>
                 <a href="#" data-page="rules">Rules</a>
@@ -914,7 +1022,7 @@
                 <a href="#">Applications</a>
                 <a href="#">Status</a>
             </div>
-            <p class="copyright">© 2024 FiveM Community. All rights reserved.</p>
+            <p class="copyright">© 2024 Swit Community. All rights reserved.</p>
         </div>
     </footer>
 
@@ -931,7 +1039,12 @@
                     const targetPage = this.getAttribute('data-page') || 'home';
                     
                     // Update active nav link
-                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    navLinks.forEach(nav => {
+                        if (nav.classList.contains('nav-link')) {
+                            nav.classList.remove('active');
+                        }
+                    });
+                    
                     if (this.classList.contains('nav-link')) {
                         this.classList.add('active');
                     }
@@ -968,7 +1081,68 @@
             animatedElements.forEach(element => {
                 observer.observe(element);
             });
+
+            // Crown animation for owner card
+            const ownerCards = document.querySelectorAll('#owner-card, #owner-card-full');
+            ownerCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    for (let i = 0; i < 15; i++) {
+                        const crown = document.createElement('div');
+                        crown.className = 'crown-fall';
+                        crown.innerHTML = '👑';
+                        crown.style.left = Math.random() * 100 + '%';
+                        crown.style.animationDelay = Math.random() * 2 + 's';
+                        this.appendChild(crown);
+                    }
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    const crowns = this.querySelectorAll('.crown-fall');
+                    crowns.forEach(crown => crown.remove());
+                });
+            });
+
+            // Medal animation for co-founder card
+            const cofounderCards = document.querySelectorAll('#cofounder-card, #cofounder-card-full');
+            cofounderCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    for (let i = 0; i < 12; i++) {
+                        const medal = document.createElement('div');
+                        medal.className = 'medal-fall';
+                        medal.innerHTML = '🏅';
+                        medal.style.left = Math.random() * 100 + '%';
+                        medal.style.animationDelay = Math.random() * 2 + 's';
+                        this.appendChild(medal);
+                    }
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    const medals = this.querySelectorAll('.medal-fall');
+                    medals.forEach(medal => medal.remove());
+                });
+            });
+
+            // Parallax effect for staff cards
+            const staffCards = document.querySelectorAll('.staff-card');
+            staffCards.forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                    const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                    this.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'rotateY(0deg) rotateX(0deg)';
+                });
+            });
         });
+
+        // Instructions for custom photos
+        console.log('To add custom staff photos:');
+        console.log('1. Replace the <i class="fas fa-crown"></i> in staff-avatar div with:');
+        console.log('   <img src="path/to/your/photo.jpg" alt="Staff Name">');
+        console.log('2. Make sure images are square (1:1 ratio) for best results');
+        console.log('3. Recommended size: 200x200 pixels or larger');
     </script>
 </body>
 </html>
