@@ -649,86 +649,51 @@
         }
 
         /* Rules Section */
-        .rules {
-            padding: 6rem 2rem;
-        }
+        .rules-tabs {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
 
-        .rules-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-        }
+.tab-btn {
+    background: var(--glass-bg);
+    color: var(--text-light);
+    border: 1px solid var(--glass-border);
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
 
-        .rules-category {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: all 0.3s ease;
-        }
+.tab-btn.active {
+    background: var(--gradient-blue);
+    color: white;
+    border-color: var(--swit-light-blue);
+}
 
-        .rules-category:hover {
-            transform: translateY(-5px);
-            border-color: var(--swit-light-blue);
-        }
+.tab-btn:hover {
+    transform: translateY(-2px);
+}
 
-        .rules-category h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--swit-light-blue);
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
+.tab-content-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2rem;
+}
 
-        .rules-list {
-            list-style: none;
-        }
+.tab-content {
+    display: none;
+}
 
-        .rules-list li {
-            padding: 0.8rem 0;
-            border-bottom: 1px solid var(--glass-border);
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            transition: color 0.3s ease;
-        }
+.tab-content.active {
+    display: block;
+}
 
-        .rules-list li:hover {
-            color: var(--text-light);
-        }
-
-        .rules-list li:last-child {
-            border-bottom: none;
-        }
-
-        .rules-list li::before {
-            content: '▸';
-            color: var(--swit-light-blue);
-            font-weight: bold;
-        }
-
-        .edit-rules-btn {
-            background: var(--gradient-blue);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            margin-top: 2rem;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .edit-rules-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 153, 255, 0.4);
-        }
 
         /* Footer */
         footer {
@@ -996,67 +961,54 @@
         </div>
 
         <!-- Rules Page -->
-        <div class="page-content" id="rules-page">
-            <section class="rules">
-                <h2 class="section-title">Server Rules</h2>
-                <div class="rules-grid">
-                    <!-- General Rules -->
-                    <div class="rules-category animate-on-scroll liquid-glass">
-                        <h3><i class="fas fa-globe"></i> General Rules</h3>
-                        <ul class="rules-list" contenteditable="true">
-                            <li>Respect all players and staff members</li>
-                            <li>No harassment, hate speech, or discrimination</li>
-                            <li>English only in global chat</li>
-                            <li>No advertising other servers</li>
-                            <li>Follow staff instructions immediately</li>
-                            <li>No exploiting or bug abuse</li>
-                        </ul>
-                    </div>
+<div class="page-content" id="rules-page">
+    <section class="rules">
+        <h2 class="section-title">Server Rules</h2>
 
-                    <!-- Roleplay Rules -->
-                    <div class="rules-category animate-on-scroll liquid-glass">
-                        <h3><i class="fas fa-theater-masks"></i> Roleplay Rules</h3>
-                        <ul class="rules-list" contenteditable="true">
-                            <li>Stay in character while roleplaying</li>
-                            <li>No metagaming (using OOC information)</li>
-                            <li>No powergaming (forcing actions)</li>
-                            <li>FearRP - value your character's life</li>
-                            <li>New Life Rule applies after death</li>
-                            <li>Proper character development required</li>
-                        </ul>
-                    </div>
-
-                    <!-- Gameplay Rules -->
-                    <div class="rules-category animate-on-scroll liquid-glass">
-                        <h3><i class="fas fa-gamepad"></i> Gameplay Rules</h3>
-                        <ul class="rules-list" contenteditable="true">
-                            <li>No cheating, exploiting, or hacking</li>
-                            <li>No random deathmatching (RDM)</li>
-                            <li>No vehicle deathmatching (VDM)</li>
-                            <li>No combat logging during situations</li>
-                            <li>Follow all server mechanics properly</li>
-                            <li>No spawn killing or camping</li>
-                        </ul>
-                    </div>
-
-                    <!-- Voice Chat Rules -->
-                    <div class="rules-category animate-on-scroll liquid-glass">
-                        <h3><i class="fas fa-microphone"></i> Voice Chat</h3>
-                        <ul class="rules-list" contenteditable="true">
-                            <li>Use push-to-talk in crowded areas</li>
-                            <li>No background noise or music</li>
-                            <li>Keep voice chat clear and audible</li>
-                            <li>Respect others in voice channels</li>
-                            <li>No screaming or excessively loud volumes</li>
-                            <li>Proper microphone quality required</li>
-                        </ul>
-                    </div>
-                </div>
-                <button class="edit-rules-btn" onclick="toggleEditRules()">
-                    <i class="fas fa-edit"></i> Edit Rules
-                </button>
-            </section>
+        <!-- Tabs -->
+        <div class="rules-tabs">
+            <button class="tab-btn active" data-tab="general">Regulament General</button>
+            <button class="tab-btn" data-tab="discord">Regulament Discord</button>
+            <button class="tab-btn" data-tab="roleplay">Regulament Roleplay</button>
         </div>
+
+        <!-- Tab Contents -->
+        <div class="tab-content-container">
+            <div class="tab-content active" id="general">
+                <ul class="rules-list" contenteditable="true">
+                    <li>Respect all players and staff members</li>
+                    <li>No harassment, hate speech, or discrimination</li>
+                    <li>English only in global chat</li>
+                    <li>No advertising other servers</li>
+                    <li>Follow staff instructions immediately</li>
+                    <li>No exploiting or bug abuse</li>
+                </ul>
+            </div>
+            <div class="tab-content" id="discord">
+                <ul class="rules-list" contenteditable="true">
+                    <li>No spamming or excessive mentions</li>
+                    <li>Respect all voice and text channels</li>
+                    <li>Keep content appropriate for community</li>
+                    <li>Follow Discord server guidelines</li>
+                </ul>
+            </div>
+            <div class="tab-content" id="roleplay">
+                <ul class="rules-list" contenteditable="true">
+                    <li>Stay in character while roleplaying</li>
+                    <li>No metagaming (using OOC information)</li>
+                    <li>No powergaming (forcing actions)</li>
+                    <li>FearRP - value your character's life</li>
+                    <li>New Life Rule applies after death</li>
+                    <li>Proper character development required</li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="edit-rules-btn" onclick="toggleEditRules()">
+            <i class="fas fa-edit"></i> Edit Rules
+        </button>
+    </section>
+</div>
 
         <!-- Staff Page -->
         <div class="page-content" id="staff-page">
@@ -1281,27 +1233,28 @@
         });
 
         // Rules editing function
-        function toggleEditRules() {
-            const rulesLists = document.querySelectorAll('.rules-list');
-            const editBtn = document.querySelector('.edit-rules-btn');
-            
-            rulesLists.forEach(list => {
-                if (list.contentEditable === 'true') {
-                    list.contentEditable = 'false';
-                    list.style.backgroundColor = 'transparent';
-                    editBtn.innerHTML = '<i class="fas fa-edit"></i> Edit Rules';
-                    editBtn.style.backgroundColor = 'var(--gradient-blue)';
-                } else {
-                    list.contentEditable = 'true';
-                    list.style.backgroundColor = 'rgba(0, 153, 255, 0.1)';
-                    editBtn.innerHTML = '<i class="fas fa-save"></i> Save Rules';
-                    editBtn.style.backgroundColor = '#4caf50';
-                }
-            });
-        }
+        // Tab functionality
+const tabButtons = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+
+tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-tab');
+
+        // Schimbă tab-ul activ
+        tabButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Arată conținutul corespunzător
+        tabContents.forEach(tc => tc.classList.remove('active'));
+        document.getElementById(target).classList.add('active');
+    });
+});
+
     </script>
 </body>
 </html>
+
 
 
 
