@@ -695,7 +695,7 @@
 }
 
 .rules-editor {
-    min-height: 150px;
+    min-height: 200px;
     padding: 1rem;
     border: 1px solid var(--glass-border);
     border-radius: 12px;
@@ -703,9 +703,25 @@
     overflow-y: auto;
     color: var(--text-light);
 }
-.rules-editor:focus {
-    outline: none;
+.rules-editor:focus { outline: none; }
+
+.tabs {
+    display:flex;
+    gap:0.5rem;
+    margin-bottom:1rem;
 }
+.tab {
+    padding:0.5rem 1rem;
+    border-radius:8px;
+    border:none;
+    cursor:pointer;
+    background: rgba(255,255,255,0.1);
+    color: var(--text-light);
+    transition:0.2s;
+}
+.tab.active { background: var(--gradient-blue); color:white; }
+.tab:hover { background: rgba(255,255,255,0.2); }
+
 .editor-toolbar button {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
@@ -991,28 +1007,31 @@
     <section class="rules">
         <h2 class="section-title">Server Rules</h2>
 
-        <!-- Dropdown pentru selectarea regulamentului -->
-        <select id="rules-select" class="liquid-glass" style="padding:0.5rem; margin-bottom:1rem;">
-            <option value="fivem-rules">Fivem Rules</option>
-            <option value="discord-rules">Discord Rules</option>
-            <option value="staff-rules">Staff Rules</option>
-        </select>
+        <<div class="rules-tabs-container liquid-glass" style="padding:1rem; border-radius:12px; border:1px solid var(--glass-border);">
+    <div class="tabs">
+        <button class="tab active" data-editor="fivem-rules">Fivem</button>
+        <button class="tab" data-editor="discord-rules">Discord</button>
+        <button class="tab" data-editor="staff-rules">Staff</button>
+        <button id="save-btn" title="Save Current Rules" style="margin-left:auto; background:#4caf50; color:white; border:none; padding:0.5rem 1rem; border-radius:8px; cursor:pointer;">
+            💾 Save
+        </button>
+    </div>
 
-        <!-- Toolbar -->
-        <div class="editor-toolbar liquid-glass" style="padding:10px; margin-bottom:1rem; display:flex; gap:0.5rem;">
-            <button onclick="formatText('bold')" title="Bold"><i class="fas fa-bold"></i></button>
-            <button onclick="formatText('italic')" title="Italic"><i class="fas fa-italic"></i></button>
-            <button onclick="formatText('underline')" title="Underline"><i class="fas fa-underline"></i></button>
-            <button onclick="formatText('hiliteColor','yellow')" title="Highlight"><i class="fas fa-highlighter"></i></button>
-        </div>
+           <!-- Toolbar -->
+    <div class="editor-toolbar" style="padding:10px; margin-bottom:1rem; display:flex; gap:0.5rem;">
+        <button onclick="formatText('bold')" title="Bold"><i class="fas fa-bold"></i></button>
+        <button onclick="formatText('italic')" title="Italic"><i class="fas fa-italic"></i></button>
+        <button onclick="formatText('underline')" title="Underline"><i class="fas fa-underline"></i></button>
+        <button onclick="formatText('hiliteColor','yellow')" title="Highlight"><i class="fas fa-highlighter"></i></button>
+    </div>
 
         <!-- Regulamente -->
-        <div class="rules-editor-container">
-            <div class="rules-editor liquid-glass" id="fivem-rules" spellcheck="false"></div>
-            <div class="rules-editor liquid-glass" id="discord-rules" spellcheck="false" style="display:none;"></div>
-            <div class="rules-editor liquid-glass" id="staff-rules" spellcheck="false" style="display:none;"></div>
-        </div>
-
+          <div class="rules-editor-container">
+        <div class="rules-editor" id="fivem-rules" contenteditable="true" spellcheck="false"></div>
+        <div class="rules-editor" id="discord-rules" contenteditable="true" spellcheck="false" style="display:none;"></div>
+        <div class="rules-editor" id="staff-rules" contenteditable="true" spellcheck="false" style="display:none;"></div>
+    </div>
+</div>
         <button class="edit-rules-btn" onclick="toggleEditRules()">
             <i class="fas fa-edit"></i> Edit Rules
         </button>
@@ -1244,40 +1263,33 @@
         // Rules editing function
         // Tab functionality
 const editors = document.querySelectorAll('.rules-editor');
-const select = document.getElementById('rules-select');
+const tabs = document.querySelectorAll('.tab');
+const saveBtn = document.getElementById('save-btn');
 
-// Încarcă textul salvat din localStorage
+// Încarcă textul salvat
 editors.forEach(editor => {
     const saved = localStorage.getItem(editor.id);
     if (saved) editor.innerHTML = saved;
 });
 
-// Schimbă regulamentul vizibil
-select.addEventListener('change', () => {
-    editors.forEach(editor => editor.style.display = 'none');
-    document.getElementById(select.value).style.display = 'block';
+// Schimbare tab
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        editors.forEach(e => e.style.display = 'none');
+        document.getElementById(tab.dataset.editor).style.display = 'block';
+    });
 });
 
-// Toggle edit și salvare
-function toggleEditRules() {
-    const currentEditor = document.getElementById(select.value);
-    const editBtn = document.querySelector('.edit-rules-btn');
+// Save rules manual
+saveBtn.addEventListener('click', () => {
+    const activeEditor = document.querySelector('.rules-editor:not([style*="display: none"])');
+    localStorage.setItem(activeEditor.id, activeEditor.innerHTML);
+    alert('✅ Rules saved!');
+});
 
-    if (currentEditor.contentEditable === 'true') {
-        // Salvare
-        localStorage.setItem(currentEditor.id, currentEditor.innerHTML);
-        currentEditor.contentEditable = 'false';
-        editBtn.innerHTML = '<i class="fas fa-edit"></i> Edit Rules';
-        editBtn.style.backgroundColor = 'var(--gradient-blue)';
-    } else {
-        currentEditor.contentEditable = 'true';
-        currentEditor.focus();
-        editBtn.innerHTML = '<i class="fas fa-save"></i> Save Rules';
-        editBtn.style.backgroundColor = '#4caf50';
-    }
-}
-
-// Toolbar funcții
+// Toolbar
 function formatText(command, value = null) {
     document.execCommand(command, false, value);
 }
@@ -1285,6 +1297,7 @@ function formatText(command, value = null) {
     </script>
 </body>
 </html>
+
 
 
 
